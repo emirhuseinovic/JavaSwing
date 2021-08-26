@@ -104,7 +104,7 @@ public class Main {
         //"Icon made by Pixel perfect from www.flaticon.com"
         MyFrame<JLabel> labelBigPlus= new MyFrame<JLabel>(new JLabel(iconBigPlus));
         labelBigPlus.getTheObject().setSize(new Dimension(64,64));
-        labelBigPlus.getTheObject().setToolTipText("Novi podatak");
+        labelBigPlus.getTheObject().setToolTipText("Za unos novog podatka pritisnite na oznaku + ili bilo gdje na sivom pravougaoniku");
 
 
         // All other components
