@@ -3,6 +3,8 @@ package com.company;
 
 
 
+import com.toedter.calendar.JCalendar;
+
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 
@@ -29,6 +31,7 @@ public class Main {
         popUpFrame.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //popUpFrame.getTheObject().setBounds(280, 120, 800, 600);
+
 
 
 
@@ -116,27 +119,13 @@ public class Main {
         // All other components
         MyFrame<JLabel> schoolYearLabel= new MyFrame<JLabel>(new JLabel("Školska godina"));
         schoolYearLabel.getTheObject().setPreferredSize(new Dimension(200,50));
-        schoolYearLabel.getTheObject().setForeground(Color.white);
+        schoolYearLabel.getTheObject().setForeground(Color.gray);
         schoolYearLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
 
 
-        MyFrame<JTextField> schoolYearData= new MyFrame<JTextField>(new JTextField(20));
-        schoolYearData.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
-        schoolYearData.getTheObject().setBackground(Color.darkGray);
-        schoolYearData.getTheObject().setForeground(Color.white);
-        schoolYearData.getTheObject().setPreferredSize(new Dimension(200,50));
-        schoolYearData.getTheObject().setHorizontalAlignment(JTextField.CENTER);
-
-        MyFrame<JTextField> currentDateData= new MyFrame<JTextField>(new JTextField(20));
-        currentDateData.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
-        currentDateData.getTheObject().setBackground(Color.darkGray);
-        currentDateData.getTheObject().setForeground(Color.white);
-        currentDateData.getTheObject().setPreferredSize(new Dimension(200,50));
-        currentDateData.getTheObject().setHorizontalAlignment(JTextField.CENTER);
-
         MyFrame<JLabel> currentDateLabel= new MyFrame<JLabel>(new JLabel("Datum upisa"));
         currentDateLabel.getTheObject().setPreferredSize(new Dimension(200,50));
-        currentDateLabel.getTheObject().setForeground(Color.white);
+        currentDateLabel.getTheObject().setForeground(Color.gray);
         currentDateLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
 
         MyFrame<JButton> nextButton= new MyFrame<JButton>(new JButton("Dalje"));
@@ -144,31 +133,26 @@ public class Main {
         nextButton.getTheObject().setPreferredSize(new Dimension(200,50));
         nextButton.getTheObject().setBackground(Color.darkGray);
 
-        String [] schoolYears= {"2021/2022","2022/2023", "2023/2024", "2024/2025", "2025/2026" };
+        String [] schoolYears= {"2022/2023","2023/2024", "2024/2025", "2025/2026", "2026/2027" };
         MyFrame<JComboBox> schoolYearsListData= new MyFrame<JComboBox>(new JComboBox(schoolYears));
-        schoolYearsListData.getTheObject().setPreferredSize(new Dimension(200,50));
+        schoolYearsListData.getTheObject().setPreferredSize(new Dimension(400,50));
         schoolYearsListData.getTheObject().setBackground(Color.darkGray);
         schoolYearsListData.getTheObject().setForeground(Color.white);
         schoolYearsListData.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
 
 
-
-
-
-
-
-
-
+        MyFrame <JCalendar> jCalendar= new MyFrame<>(new JCalendar());
+        jCalendar.getTheObject().setBackground(Color.darkGray);
+        jCalendar.getTheObject().setPreferredSize(new Dimension(400,200));
+        jCalendar.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2, 0,Color.decode("#66d9ff")));
 
 
 
         // Add to plusPanel
-        //plusPanel.getTheObject().add(schoolYearData.getTheObject());
-        // plusPanel.getTheObject().add(schoolYearLabel.getTheObject());
+
 
         constraints.gridx=0;
         constraints.gridy=0;
-        constraints.fill=GridBagConstraints.HORIZONTAL;
         plusPanel.getTheObject().add(schoolYearsListData.getTheObject(), constraints);
 
         constraints.gridx=0;
@@ -176,19 +160,20 @@ public class Main {
         constraints.insets=new Insets(10,0,0,0);
         plusPanel.getTheObject().add(schoolYearLabel.getTheObject(), constraints);
 
-        constraints.gridx=0;
-        constraints.gridy=2;
-        constraints.insets=new Insets(10,0,0,0);
-        plusPanel.getTheObject().add(currentDateData.getTheObject(), constraints);
 
         constraints.gridx=0;
         constraints.gridy=3;
         constraints.insets=new Insets(10,0,0,0);
+        plusPanel.getTheObject().add(jCalendar.getTheObject(), constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=4;
+        constraints.insets=new Insets(10,0,0,0);
         plusPanel.getTheObject().add(currentDateLabel.getTheObject(), constraints);
 
         constraints.gridx=2;
-        constraints.gridy=4;
-        constraints.insets=new Insets(10,0,0,0);
+        constraints.gridy=5;
+        constraints.insets=new Insets(10,50,0,0);
         plusPanel.getTheObject().add(nextButton.getTheObject(), constraints);
 
 
