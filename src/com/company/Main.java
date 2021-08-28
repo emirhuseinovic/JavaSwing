@@ -11,7 +11,11 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Date;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -31,11 +35,21 @@ public class Main {
         popUpFrame.getTheObject().setTitle("Školska godina i datum upisa");
         popUpFrame.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+
         MyFrame <JFrame> popUpFrameTwo= new MyFrame<JFrame> (new JFrame());
         popUpFrameTwo.getTheObject().setSize(new Dimension(1280, 768));
         popUpFrameTwo.getTheObject().setTitle("Opšti podaci");
         popUpFrameTwo.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        MyFrame <JFrame> popUpFrameThree= new MyFrame<JFrame> (new JFrame());
+        popUpFrameThree.getTheObject().setSize(new Dimension(1280, 768));
+        popUpFrameThree.getTheObject().setTitle("Uspjeh");
+        popUpFrameThree.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //ImageIcon jFrameIcon=new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/boat(1).png");
+        //popUpFrameThree.getTheObject().setIconImage(jFrameIcon.getImage());
+
+        //<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        ////"Icon made by Freepik from www.flaticon.com"
         // Creating layouts
         BorderLayout borderLayout=new BorderLayout();
         GridLayout gridLayout= new GridLayout(0,3,10,10);
@@ -48,13 +62,13 @@ public class Main {
         // Set main JPanel
         MyFrame <JPanel> mainPanelObj= new <JPanel> MyFrame(new JPanel());
         mainPanelObj.getTheObject().setSize(new Dimension(1280,768));
-        mainPanelObj.getTheObject().setBackground(Color.DARK_GRAY);
+        mainPanelObj.getTheObject().setBackground(Color.darkGray);
         mainPanelObj.getTheObject().setLayout(borderLayout);
 
         // Set JPanels
         MyFrame<JPanel> sidePanel= new MyFrame <JPanel>(new JPanel());
         sidePanel.getTheObject().setSize(new Dimension(180, 768));
-        sidePanel.getTheObject().setBackground(Color.black);
+        sidePanel.getTheObject().setBackground(Color.decode("#1a1a1a"));
         sidePanel.getTheObject().setLayout(new GridLayout(6,1,10, 10));
 
         MyFrame<JPanel> plusPanel= new MyFrame <JPanel>(new JPanel());
@@ -66,6 +80,11 @@ public class Main {
         plusPanelTwo.getTheObject().setSize(new Dimension(1280, 768));
         plusPanelTwo.getTheObject().setBackground(Color.darkGray);
         plusPanelTwo.getTheObject().setLayout(new GridBagLayout() );
+
+        MyFrame<JPanel> plusPanelThree= new MyFrame <JPanel>(new JPanel());
+        plusPanelThree.getTheObject().setSize(new Dimension(1280, 768));
+        plusPanelThree.getTheObject().setBackground(Color.darkGray);
+        plusPanelThree.getTheObject().setLayout(new GridBagLayout() );
 
 
         // Creating icons
@@ -136,6 +155,12 @@ public class Main {
         jCalendar.getTheObject().setPreferredSize(new Dimension(400,200));
         jCalendar.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2, 0,Color.decode("#66d9ff")));
 
+        ImageIcon calendarIcon= new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/calendar.png");
+        JLabel calendarIconLabel= new JLabel(calendarIcon);
+        calendarIconLabel.setPreferredSize(new Dimension(32,32));
+        // <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        // "Icon made by Freepik perfect from www.flaticon.com"
+
 
         // Components for plusPanelTwo
         MyFrame<JTextField> studentName=new MyFrame<JTextField>(new JTextField());
@@ -199,31 +224,260 @@ public class Main {
         previousButtonPPT.getTheObject().setPreferredSize(new Dimension(200,50));
         previousButtonPPT.getTheObject().setBackground(Color.darkGray);
 
+        // Components for plusPanelThree
+        MyFrame<JLabel> sixthGradeLabel= new MyFrame<>(new JLabel("Opšti uspjeh 6. razred"));
+        sixthGradeLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        sixthGradeLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        sixthGradeLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        sixthGradeLabel.getTheObject().setForeground(Color.gray);
 
+        MyFrame<Double []> gradesVi= new MyFrame<>(new Double[9]);
+        gradesVi.getTheObject()[0]=5.0;
+        gradesVi.getTheObject()[1]=4.9;
+        gradesVi.getTheObject()[2]=4.8;
+        gradesVi.getTheObject()[3]=4.7;
+        gradesVi.getTheObject()[4]=4.6;
+        gradesVi.getTheObject()[5]=4.5;
+        gradesVi.getTheObject()[6]=4.0;
+        gradesVi.getTheObject()[7]=3.0;
+        gradesVi.getTheObject()[8]=2.0;
+
+        MyFrame<JComboBox> gradesData= new MyFrame<JComboBox>(new JComboBox(gradesVi.getTheObject()));
+        gradesData.getTheObject().setPreferredSize(new Dimension(200,50));
+        gradesData.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> seventhGradeLabel= new MyFrame<>(new JLabel("Opšti uspjeh 7. razred"));
+        seventhGradeLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        seventhGradeLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        seventhGradeLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        seventhGradeLabel.getTheObject().setForeground(Color.gray);
+
+        MyFrame<Double []> gradesVII= new MyFrame<>(new Double[9]);
+        gradesVII.getTheObject()[0]=5.0;
+        gradesVII.getTheObject()[1]=4.9;
+        gradesVII.getTheObject()[2]=4.8;
+        gradesVII.getTheObject()[3]=4.7;
+        gradesVII.getTheObject()[4]=4.6;
+        gradesVII.getTheObject()[5]=4.5;
+        gradesVII.getTheObject()[6]=4.0;
+        gradesVII.getTheObject()[7]=3.0;
+        gradesVII.getTheObject()[8]=2.0;
+
+        MyFrame<JComboBox> gradesDataVII= new MyFrame<JComboBox>(new JComboBox(gradesVII.getTheObject()));
+        gradesDataVII.getTheObject().setPreferredSize(new Dimension(200,50));
+        gradesDataVII.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> eightGradeLabel= new MyFrame<>(new JLabel("Opšti uspjeh 8. razred"));
+        eightGradeLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        eightGradeLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        eightGradeLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        eightGradeLabel.getTheObject().setForeground(Color.gray);
+
+        MyFrame<Double []> gradesVIII= new MyFrame<>(new Double[9]);
+        gradesVIII.getTheObject()[0]=5.0;
+        gradesVIII.getTheObject()[1]=4.9;
+        gradesVIII.getTheObject()[2]=4.8;
+        gradesVIII.getTheObject()[3]=4.7;
+        gradesVIII.getTheObject()[4]=4.6;
+        gradesVIII.getTheObject()[5]=4.5;
+        gradesVIII.getTheObject()[6]=4.0;
+        gradesVIII.getTheObject()[7]=3.0;
+        gradesVIII.getTheObject()[8]=2.0;
+
+        MyFrame<JComboBox> gradesDataVIII= new MyFrame<JComboBox>(new JComboBox(gradesVIII.getTheObject()));
+        gradesDataVIII.getTheObject().setPreferredSize(new Dimension(200,50));
+        gradesDataVIII.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> ninthGradeLabel= new MyFrame<>(new JLabel("Opšti uspjeh 9. razred"));
+        ninthGradeLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        ninthGradeLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        ninthGradeLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        ninthGradeLabel.getTheObject().setForeground(Color.gray);
+
+        MyFrame<Double []> gradesIX= new MyFrame<>(new Double[9]);
+        gradesIX.getTheObject()[0]=5.0;
+        gradesIX.getTheObject()[1]=4.9;
+        gradesIX.getTheObject()[2]=4.8;
+        gradesIX.getTheObject()[3]=4.7;
+        gradesIX.getTheObject()[4]=4.6;
+        gradesIX.getTheObject()[5]=4.5;
+        gradesIX.getTheObject()[6]=4.0;
+        gradesIX.getTheObject()[7]=3.0;
+        gradesIX.getTheObject()[8]=2.0;
+
+        MyFrame<JComboBox> gradesDataIX= new MyFrame<JComboBox>(new JComboBox(gradesVIII.getTheObject()));
+        gradesDataIX.getTheObject().setPreferredSize(new Dimension(200,50));
+        gradesDataIX.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<Double []> relSubjList= new MyFrame<>(new Double[4]);
+        relSubjList.getTheObject()[0]=5.0;
+        relSubjList.getTheObject()[1]=4.0;
+        relSubjList.getTheObject()[2]=3.0;
+        relSubjList.getTheObject()[3]=2.0;
+
+
+
+        MyFrame<JComboBox> relSubj1= new MyFrame<JComboBox>(new JComboBox(relSubjList.getTheObject()));
+        relSubj1.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj1.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> relSubj8Gr= new MyFrame<>(new JLabel("Relevantni predmet I (VIII)"));
+        relSubj8Gr.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj8Gr.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        relSubj8Gr.getTheObject().setBackground(Color.DARK_GRAY);
+        relSubj8Gr.getTheObject().setForeground(Color.gray);
+
+        MyFrame<Double []> relSubjList2= new MyFrame<>(new Double[4]);
+        relSubjList2.getTheObject()[0]=5.0;
+        relSubjList2.getTheObject()[1]=4.0;
+        relSubjList2.getTheObject()[2]=3.0;
+        relSubjList2.getTheObject()[3]=2.0;
+
+        MyFrame<JComboBox> relSubj2= new MyFrame<JComboBox>(new JComboBox(relSubjList2.getTheObject()));
+        relSubj2.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj2.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> relSubj8Gr2= new MyFrame<>(new JLabel("Relevantni predmet II (VIII)"));
+        relSubj8Gr2.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj8Gr2.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        relSubj8Gr2.getTheObject().setBackground(Color.DARK_GRAY);
+        relSubj8Gr2.getTheObject().setForeground(Color.gray);
+
+        MyFrame<Double []> relSubjList3= new MyFrame<>(new Double[4]);
+        relSubjList3.getTheObject()[0]=5.0;
+        relSubjList3.getTheObject()[1]=4.0;
+        relSubjList3.getTheObject()[2]=3.0;
+        relSubjList3.getTheObject()[3]=2.0;
+
+        MyFrame<JComboBox> relSubj3= new MyFrame<JComboBox>(new JComboBox(relSubjList3.getTheObject()));
+        relSubj3.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj3.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> relSubj8Gr3= new MyFrame<>(new JLabel("Relevantni predmet III (VIII)"));
+        relSubj8Gr3.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj8Gr3.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        relSubj8Gr3.getTheObject().setBackground(Color.DARK_GRAY);
+        relSubj8Gr3.getTheObject().setForeground(Color.gray);
+
+
+
+        MyFrame<Double []> relSubjList4= new MyFrame<>(new Double[4]);
+        relSubjList4.getTheObject()[0]=5.0;
+        relSubjList4.getTheObject()[1]=4.0;
+        relSubjList4.getTheObject()[2]=3.0;
+        relSubjList4.getTheObject()[3]=2.0;
+
+        MyFrame<JComboBox> relSubj4= new MyFrame<JComboBox>(new JComboBox(relSubjList4.getTheObject()));
+        relSubj4.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj4.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> relSubj9Gr= new MyFrame<>(new JLabel("Relevantni predmet I (IX)"));
+        relSubj9Gr.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj9Gr.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        relSubj9Gr.getTheObject().setBackground(Color.DARK_GRAY);
+        relSubj9Gr.getTheObject().setForeground(Color.gray);
+
+        MyFrame<Double []> relSubjList5= new MyFrame<>(new Double[4]);
+        relSubjList5.getTheObject()[0]=5.0;
+        relSubjList5.getTheObject()[1]=4.0;
+        relSubjList5.getTheObject()[2]=3.0;
+        relSubjList5.getTheObject()[3]=2.0;
+
+        MyFrame<JComboBox> relSubj5= new MyFrame<JComboBox>(new JComboBox(relSubjList5.getTheObject()));
+        relSubj5.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj5.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> relSubj9Gr2= new MyFrame<>(new JLabel("Relevantni predmet II (IX)"));
+        relSubj9Gr2.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj9Gr2.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        relSubj9Gr2.getTheObject().setBackground(Color.DARK_GRAY);
+        relSubj9Gr2.getTheObject().setForeground(Color.gray);
+
+        MyFrame<Double []> relSubjList6= new MyFrame<>(new Double[4]);
+        relSubjList6.getTheObject()[0]=5.0;
+        relSubjList6.getTheObject()[1]=4.0;
+        relSubjList6.getTheObject()[2]=3.0;
+        relSubjList6.getTheObject()[3]=2.0;
+
+        MyFrame<JComboBox> relSubj6= new MyFrame<JComboBox>(new JComboBox(relSubjList6.getTheObject()));
+        relSubj6.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj6.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> relSubj9Gr3= new MyFrame<>(new JLabel("Relevantni predmet III (IX)"));
+        relSubj9Gr3.getTheObject().setPreferredSize(new Dimension(200,50));
+        relSubj9Gr3.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        relSubj9Gr3.getTheObject().setBackground(Color.DARK_GRAY);
+        relSubj9Gr3.getTheObject().setForeground(Color.gray);
+
+        JCheckBox internationalComp= new JCheckBox("Međunarnodno takmičenje");
+        internationalComp.setPreferredSize(new Dimension(250,50));
+        internationalComp.setBackground(Color.darkGray);
+        internationalComp.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
+        internationalComp.setForeground(Color.lightGray);
+
+        JCheckBox federalComp= new JCheckBox("Federalno takmičenje");
+        federalComp.setPreferredSize(new Dimension(250,50));
+        federalComp.setBackground(Color.darkGray);
+        federalComp.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
+        federalComp.setForeground(Color.lightGray);
+
+        JCheckBox cantonalComp= new JCheckBox("Kantonalno takmičenje");
+        cantonalComp.setPreferredSize(new Dimension(250,50));
+        cantonalComp.setBackground(Color.darkGray);
+        cantonalComp.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
+        cantonalComp.setForeground(Color.lightGray);
+
+        JCheckBox specialDiplom= new JCheckBox("Posebna diploma");
+        specialDiplom.setPreferredSize(new Dimension(250,50));
+        specialDiplom.setBackground(Color.darkGray);
+        specialDiplom.setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
+        specialDiplom.setForeground(Color.lightGray);
+
+        MyFrame<JButton> backButtonPoPThree= new MyFrame<JButton>(new JButton("Nazad"));
+        backButtonPoPThree.getTheObject().setForeground(Color.decode("#66d9ff"));
+        backButtonPoPThree.getTheObject().setPreferredSize(new Dimension(200,50));
+        backButtonPoPThree.getTheObject().setBackground(Color.darkGray);
+
+        MyFrame<JButton> finishButtonPoPThree= new MyFrame<JButton>(new JButton("Zavši unos"));
+        finishButtonPoPThree.getTheObject().setForeground(Color.decode("#66d9ff"));
+        finishButtonPoPThree.getTheObject().setPreferredSize(new Dimension(200,50));
+        finishButtonPoPThree.getTheObject().setBackground(Color.darkGray);
+
+
+       /* ImageIcon badgeIcon= new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/badge.png");
+        JLabel badgeIconLabel= new JLabel(badgeIcon);
+        badgeIconLabel.setPreferredSize(new Dimension(32,32));
+        badgeIconLabel.setBounds(600,200, 32,32);
+
+         <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+         "Icon made by Freepik perfect from www.flaticon.com"
+
+*/
 
         // Add to plusPanel
         constraints.gridx=0;
         constraints.gridy=0;
+       // constraints.insets=new Insets(0,100,0, 0);
         plusPanel.getTheObject().add(schoolYearsListData.getTheObject(), constraints);
 
         constraints.gridx=0;
         constraints.gridy=1;
-        //constraints.insets=new Insets(10,0,0,0);
+        //constraints.insets=new Insets(0,200,0,0);
         plusPanel.getTheObject().add(schoolYearLabel.getTheObject(), constraints);
 
 
         constraints.gridx=0;
-        constraints.gridy=3;
+        constraints.gridy=2;
         //constraints.insets=new Insets(10,0,0,0);
         plusPanel.getTheObject().add(jCalendar.getTheObject(), constraints);
 
         constraints.gridx=0;
-        constraints.gridy=4;
+        constraints.gridy=3;
        // constraints.insets=new Insets(10,0,0,0);
         plusPanel.getTheObject().add(currentDateLabel.getTheObject(), constraints);
 
-        constraints.gridx=1;
-        constraints.gridy=5;
+        constraints.gridx=0;
+        constraints.gridy=4;
        // constraints.insets=new Insets(10,50,0,0);
         plusPanel.getTheObject().add(nextButton.getTheObject(), constraints);
 
@@ -270,6 +524,127 @@ public class Main {
         constraints.gridy=8;
         plusPanelTwo.getTheObject().add(previousButtonPPT.getTheObject(), constraints);
 
+        // Add to plusPanelThree
+        constraints.gridx=0;
+        constraints.gridy=0;
+        plusPanelThree.getTheObject().add(gradesData.getTheObject(), constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=0;
+        plusPanelThree.getTheObject().add(sixthGradeLabel.getTheObject(),constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=2;
+        plusPanelThree.getTheObject().add(gradesDataVII.getTheObject(), constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=3;
+        plusPanelThree.getTheObject().add(seventhGradeLabel.getTheObject(),constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=4;
+        plusPanelThree.getTheObject().add(gradesDataVIII.getTheObject(), constraints);
+
+
+        constraints.gridx=0;
+        constraints.gridy=5;
+        plusPanelThree.getTheObject().add(eightGradeLabel.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=0;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj1.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=1;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj8Gr.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=2;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj2.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=3;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj8Gr2.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=4;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj3.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=5;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj8Gr3.getTheObject(),constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=0;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj4.getTheObject(),constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=1;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj9Gr.getTheObject(),constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=2;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj5.getTheObject(),constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=3;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj9Gr2.getTheObject(),constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=4;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj6.getTheObject(),constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=5;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj9Gr3.getTheObject(),constraints);
+
+        constraints.gridx=3;
+        constraints.gridy=0;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(internationalComp,constraints);
+
+        constraints.gridx=3;
+        constraints.gridy=1;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(federalComp,constraints);
+
+        constraints.gridx=3;
+        constraints.gridy=2;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(cantonalComp,constraints);
+
+        constraints.gridx=3;
+        constraints.gridy=3;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(specialDiplom,constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=6;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(backButtonPoPThree.getTheObject(),constraints);
+
+        constraints.gridx=3;
+        constraints.gridy=6;
+        constraints.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(finishButtonPoPThree.getTheObject(),constraints);
+
+
+        //plusPanelThree.getTheObject().add(badgeIconLabel, constraints);
+
+
+
 
 
         // Add to main JPanel
@@ -289,6 +664,7 @@ public class Main {
         obj.getTheObject().add(mainPanelObj.getTheObject());
         popUpFrame.getTheObject().add(plusPanel.getTheObject());
         popUpFrameTwo.getTheObject().add(plusPanelTwo.getTheObject());
+        popUpFrameThree.getTheObject().add(plusPanelThree.getTheObject());
 
         // Event handlers
         labelIconOne.getTheObject().addMouseListener(new MouseListener() {
@@ -399,7 +775,32 @@ public class Main {
 
             }
         });
+            nextButtonPPT.getTheObject().addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    popUpFrameThree.getTheObject().setVisible(true);
+                }
 
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
 
 
 
