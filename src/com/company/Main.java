@@ -6,16 +6,10 @@ package com.company;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.JFrame;
-import javax.swing.border.Border;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.util.*;
-import java.util.List;
 
 import javax.swing.*;
 
@@ -25,9 +19,10 @@ public class Main {
 
         //JDBC
         ConnectionHandler connectionHandler=new ConnectionHandler();
-        connectionHandler.connect();
+       // connectionHandler.connect();
 
         // Creating JFrame
+
         MyFrame <JFrame> obj= new MyFrame<JFrame> (new JFrame());
         obj.getTheObject().setSize(new Dimension(1280, 768));
         obj.getTheObject().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +47,13 @@ public class Main {
         //ImageIcon jFrameIcon=new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/boat(1).png");
         //popUpFrameThree.getTheObject().setIconImage(jFrameIcon.getImage());
 
+        MyFrame <JFrame> loginJFrame= new MyFrame<JFrame> (new JFrame());
+        loginJFrame.getTheObject().setSize(new Dimension(1280, 768));
+        loginJFrame.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        loginJFrame.getTheObject().setVisible(true);
+        loginJFrame.getTheObject().setTitle("Prijava");
+
+
         //<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         ////"Icon made by Freepik from www.flaticon.com"
         // Creating layouts
@@ -60,6 +62,8 @@ public class Main {
         Box verticalBox=Box.createVerticalBox();
         verticalBox.setSize(new Dimension(100,50));
         GridBagConstraints constraints= new GridBagConstraints();
+        GridBagConstraints constraints2= new GridBagConstraints();
+
 
 
 
@@ -89,6 +93,11 @@ public class Main {
         plusPanelThree.getTheObject().setSize(new Dimension(1280, 768));
         plusPanelThree.getTheObject().setBackground(Color.darkGray);
         plusPanelThree.getTheObject().setLayout(new GridBagLayout() );
+
+        MyFrame<JPanel> loginPanel= new MyFrame <JPanel>(new JPanel());
+        loginPanel.getTheObject().setSize(new Dimension(1280, 768));
+        loginPanel.getTheObject().setBackground(Color.darkGray);
+        loginPanel.getTheObject().setLayout(new GridBagLayout());
 
 
         // Creating icons
@@ -447,6 +456,59 @@ public class Main {
         finishButtonPoPThree.getTheObject().setPreferredSize(new Dimension(200,50));
         finishButtonPoPThree.getTheObject().setBackground(Color.darkGray);
 
+        // Components for loginPanel
+        MyFrame<JLabel> usernameIcon= new MyFrame<JLabel>(new JLabel(new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/user(1).png")));
+        // <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        // author freepik
+        usernameIcon.getTheObject().setPreferredSize(new Dimension(32,32));
+        //usernameIcon.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        usernameIcon.getTheObject().setBackground(Color.DARK_GRAY);
+        usernameIcon.getTheObject().setForeground(Color.gray);
+
+        MyFrame<JTextField> username=new MyFrame<JTextField>(new JTextField());
+        username.getTheObject().setPreferredSize(new Dimension(400,50));
+        username.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
+        username.getTheObject().setBackground(Color.darkGray);
+        username.getTheObject().setForeground(Color.lightGray);
+        username.getTheObject().setHorizontalAlignment(JTextField.CENTER);
+
+        MyFrame<JLabel> usernameLabel= new MyFrame<JLabel>(new JLabel("Ime"));
+        usernameLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        //usernameLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        usernameLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        usernameLabel.getTheObject().setForeground(Color.gray);
+
+        MyFrame<JLabel> passwordIcon= new MyFrame<JLabel>(new JLabel(new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/padlock(1).png")));
+        //<div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        //author pixel perfect
+        passwordIcon.getTheObject().setPreferredSize(new Dimension(32,32));
+        //passwordIcon.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        passwordIcon.getTheObject().setBackground(Color.DARK_GRAY);
+        passwordIcon.getTheObject().setForeground(Color.gray);
+
+        MyFrame<JPasswordField> password=new MyFrame<JPasswordField>(new JPasswordField());
+        password.getTheObject().setPreferredSize(new Dimension(400,50));
+        password.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0,Color.decode("#66d9ff")));
+        password.getTheObject().setBackground(Color.darkGray);
+        password.getTheObject().setForeground(Color.lightGray);
+        password.getTheObject().setHorizontalAlignment(JTextField.CENTER);
+
+        MyFrame<JLabel> paswordLabel= new MyFrame<JLabel>(new JLabel("Ime"));
+        paswordLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        paswordLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        paswordLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        paswordLabel.getTheObject().setForeground(Color.gray);
+
+        MyFrame<JLabel> newAccountLink= new MyFrame<JLabel>(new JLabel("Kreirajte novi račun"));
+        newAccountLink.getTheObject().setPreferredSize(new Dimension(200,50));
+        newAccountLink.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        newAccountLink.getTheObject().setBackground(Color.DARK_GRAY);
+        newAccountLink.getTheObject().setForeground(Color.decode("#66d9ff"));
+
+        MyFrame<JButton> loginButton= new MyFrame<JButton>(new JButton("Prijava"));
+        loginButton.getTheObject().setForeground(Color.decode("#66d9ff"));
+        loginButton.getTheObject().setPreferredSize(new Dimension(200,50));
+        loginButton.getTheObject().setBackground(Color.darkGray);
 
        /* ImageIcon badgeIcon= new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/badge.png");
         JLabel badgeIconLabel= new JLabel(badgeIcon);
@@ -646,6 +708,39 @@ public class Main {
         constraints.insets= new Insets(10,20,0, 0);
         plusPanelThree.getTheObject().add(finishButtonPoPThree.getTheObject(),constraints);
 
+        // Add to loginPanel
+        constraints.gridx=0;
+        constraints.gridy=0;
+        constraints.insets=new Insets(10,0,0,0);
+        loginPanel.getTheObject().add(usernameIcon.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=0;
+        constraints.insets=new Insets(10,0,0,0);
+        loginPanel.getTheObject().add(username.getTheObject(),constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=1;
+        constraints.insets=new Insets(10,0,0,0);
+        loginPanel.getTheObject().add(passwordIcon.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=1;
+        constraints.insets=new Insets(10,0,0,0);
+        loginPanel.getTheObject().add(password.getTheObject(),constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=3;
+        constraints.insets=new Insets(10,0,0,0);
+        loginPanel.getTheObject().add(newAccountLink.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=3;
+        constraints.insets=new Insets(10,0,0,0);
+        loginPanel.getTheObject().add(loginButton.getTheObject(), constraints);
+
+
+
 
         //plusPanelThree.getTheObject().add(badgeIconLabel, constraints);
 
@@ -671,6 +766,7 @@ public class Main {
         popUpFrame.getTheObject().add(plusPanel.getTheObject());
         popUpFrameTwo.getTheObject().add(plusPanelTwo.getTheObject());
         popUpFrameThree.getTheObject().add(plusPanelThree.getTheObject());
+        loginJFrame.getTheObject().add(loginPanel.getTheObject());
 
         // Event handlers
         labelIconOne.getTheObject().addMouseListener(new MouseListener() {
@@ -785,6 +881,38 @@ public class Main {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     popUpFrameThree.getTheObject().setVisible(true);
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
+
+
+            loginButton.getTheObject().addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    String usernameCred=username.getTheObject().getText();
+                    String stringifyPassword= new String(password.getTheObject().getPassword());
+
+                    String loginQuery="INSERT INTO person (name, surname,email) VALUES ('"+usernameCred+"', '"+stringifyPassword+"', 'huseinovic_emir@gmx.com')";
+                    connectionHandler.connectAndCrud(loginQuery);
                 }
 
                 @Override
