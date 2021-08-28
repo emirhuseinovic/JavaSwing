@@ -21,7 +21,11 @@ import javax.swing.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
+
+        //JDBC
+        ConnectionHandler connectionHandler=new ConnectionHandler();
+        connectionHandler.connect();
 
         // Creating JFrame
         MyFrame <JFrame> obj= new MyFrame<JFrame> (new JFrame());
@@ -476,7 +480,7 @@ public class Main {
        // constraints.insets=new Insets(10,0,0,0);
         plusPanel.getTheObject().add(currentDateLabel.getTheObject(), constraints);
 
-        constraints.gridx=0;
+        constraints.gridx=1;
         constraints.gridy=4;
        // constraints.insets=new Insets(10,50,0,0);
         plusPanel.getTheObject().add(nextButton.getTheObject(), constraints);
@@ -485,7 +489,6 @@ public class Main {
 
         constraints.gridx=0;
         constraints.gridy=0;
-        constraints.insets= new Insets(10,0,0,0);
         plusPanelTwo.getTheObject().add(studentName.getTheObject(), constraints);
 
         constraints.gridx=0;
@@ -516,13 +519,16 @@ public class Main {
         constraints.gridy=7;
         plusPanelTwo.getTheObject().add(dobLabel.getTheObject(), constraints);
 
-        constraints.gridx=1;
-        constraints.gridy=8;
-        plusPanelTwo.getTheObject().add(nextButtonPPT.getTheObject(), constraints);
-
         constraints.gridx=0;
         constraints.gridy=8;
         plusPanelTwo.getTheObject().add(previousButtonPPT.getTheObject(), constraints);
+
+
+        constraints.gridx=1;
+        constraints.gridy=8;
+
+        plusPanelTwo.getTheObject().add(nextButtonPPT.getTheObject(), constraints);
+
 
         // Add to plusPanelThree
         constraints.gridx=0;
