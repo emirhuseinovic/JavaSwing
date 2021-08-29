@@ -1,7 +1,8 @@
 package com.company;
 
 
-
+//use data;
+//create table entrys (id int not null auto_increment primary key, schoolYear varchar(256) not null, entryDate date not null, name varchar(256) not null, fatherName varchar(256) not null, surname varchar(256) not null, dob date not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC boolean not null, fC boolean not null, cC boolean not null, sD boolean not null);
 
 import com.toedter.calendar.JCalendar;
 
@@ -10,6 +11,8 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -510,6 +513,12 @@ public class Main {
         loginButton.getTheObject().setPreferredSize(new Dimension(200,50));
         loginButton.getTheObject().setBackground(Color.darkGray);
 
+        MyFrame<JLabel> error= new MyFrame<JLabel>(new JLabel("Korisničko ime ili šifra nisu ispravni"));
+        error.getTheObject().setPreferredSize(new Dimension(300,50));
+        error.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        error.getTheObject().setBackground(Color.DARK_GRAY);
+        error.getTheObject().setForeground(Color.red);
+
        /* ImageIcon badgeIcon= new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/badge.png");
         JLabel badgeIconLabel= new JLabel(badgeIcon);
         badgeIconLabel.setPreferredSize(new Dimension(32,32));
@@ -911,8 +920,29 @@ public class Main {
                     String usernameCred=username.getTheObject().getText();
                     String stringifyPassword= new String(password.getTheObject().getPassword());
 
-                    String loginQuery="INSERT INTO person (name, surname,email) VALUES ('"+usernameCred+"', '"+stringifyPassword+"', 'huseinovic_emir@gmx.com')";
-                    connectionHandler.connectAndCrud(loginQuery);
+                   // String loginQuery="INSERT INTO users (username, password) VALUES ('"+usernameCred+"', '"+stringifyPassword+"')";
+                   // connectionHandler.connectAndCrud(loginQuery);
+                 ResultSet set=   connectionHandler.connectAndFetch("SELECT * FROM users");
+                 try {
+                     while (set.next()){
+                         if (set.getString("username").equals(usernameCred)&& set.getString("password").equals(stringifyPassword)){
+                             System.out.println("Validno");
+                             loginJFrame.getTheObject().setVisible(false);
+
+                         }else {
+                             System.out.println("Korisnicko ime ili šifra nisu tačni");
+                             GridBagConstraints localGBC= new GridBagConstraints();
+                             localGBC.gridx=1;
+                             localGBC.gridy=4;
+                             localGBC.insets=new Insets(10,0,0,0);
+                             loginPanel.getTheObject().add(error.getTheObject(), localGBC);
+                         }
+                     }
+
+                 }catch (Exception ex){
+                     ex.printStackTrace();
+                 }
+
                 }
 
                 @Override
