@@ -13,12 +13,28 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.*;
 
+
+
 public class Main {
 
+    public static LocalDateTime convertDate(Date date){
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+    }
+
+
     public static void main(String[] args)  {
+
+
 
         //JDBC
         ConnectionHandler connectionHandler=new ConnectionHandler();
@@ -321,7 +337,7 @@ public class Main {
         gradesIX.getTheObject()[7]=3.0;
         gradesIX.getTheObject()[8]=2.0;
 
-        MyFrame<JComboBox> gradesDataIX= new MyFrame<JComboBox>(new JComboBox(gradesVIII.getTheObject()));
+        MyFrame<JComboBox> gradesDataIX= new MyFrame<JComboBox>(new JComboBox(gradesIX.getTheObject()));
         gradesDataIX.getTheObject().setPreferredSize(new Dimension(200,50));
         gradesDataIX.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.decode("#66d9ff")));
 
@@ -777,6 +793,9 @@ public class Main {
         popUpFrameThree.getTheObject().add(plusPanelThree.getTheObject());
         loginJFrame.getTheObject().add(loginPanel.getTheObject());
 
+
+
+
         // Event handlers
         labelIconOne.getTheObject().addMouseListener(new MouseListener() {
             @Override
@@ -943,6 +962,122 @@ public class Main {
                      ex.printStackTrace();
                  }
 
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
+
+
+
+            finishButtonPoPThree.getTheObject().addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+
+
+
+
+
+
+                    String schoolYear= (String) schoolYearsListData.getTheObject().getSelectedItem();
+
+                    Date jcalValue=jCalendar.getTheObject().getDate();
+                    LocalDateTime currentDates=convertDate(jcalValue);
+                    DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    String stringify=formatter.format(currentDates);
+                    System.out.println(stringify);
+
+                    String student=studentName.getTheObject().getText();
+                    String father=studentFatherName.getTheObject().getText();
+                    String studentLastname=studentSurname.getTheObject().getText();
+
+                   Date dobValue= dob.getTheObject().getDate();
+                   LocalDateTime selectedDob=convertDate(dobValue);
+                   DateTimeFormatter formatter1=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                   String stringifyDob=formatter1.format(selectedDob);
+                   System.out.println(stringifyDob);
+
+
+
+
+                    Double generalVII= (Double) gradesDataVII.getTheObject().getSelectedItem();
+                    Double generalVIII= (Double) gradesDataVIII.getTheObject().getSelectedItem();
+                    Double generalIX= (Double) gradesDataIX.getTheObject().getSelectedItem();
+                    Double subj1= (Double) relSubj1.getTheObject().getSelectedItem();
+                    String sb1=subj1.toString();
+                    double dsb1=Double.parseDouble(sb1);
+                    Double subj2= (Double) relSubj2.getTheObject().getSelectedItem();
+                    String sb2=subj2.toString();
+                    double dsb2=Double.parseDouble(sb2);
+                    Double subj3= (Double) relSubj3.getTheObject().getSelectedItem();
+                    String sb3=subj3.toString();
+                    double dsb3=Double.parseDouble(sb3);
+                    Double subj4= (Double) relSubj4.getTheObject().getSelectedItem();
+                    String sb4=subj4.toString();
+                    double dsb4=Double.parseDouble(sb4);
+                    Double subj5= (Double) relSubj5.getTheObject().getSelectedItem();
+                    String sb5=subj5.toString();
+                    double dsb5=Double.parseDouble(sb5);
+                    Double subj6= (Double) relSubj6.getTheObject().getSelectedItem();
+                    String sb6=subj6.toString();
+                    double dsb6=Double.parseDouble(sb6);
+                    boolean internationalC=internationalComp.isSelected();
+                    String intC;
+                    double resultSum=0;
+                    if (internationalC==true){
+                        intC="DA";
+                    }else {
+                        intC="NE";
+                    }
+                    boolean federalC=federalComp.isSelected();
+                    String fedC;
+                    if (federalC==true){
+                        fedC="DA";
+                    }else {
+                        fedC="NE";
+                    }
+                    boolean cantonalC=cantonalComp.isSelected();
+                    String canC;
+                    if (cantonalC==true){
+                        canC="DA";
+                    }else {
+                        canC="NE";
+                    }
+                    boolean specialD=specialDiplom.isSelected();
+                    String speC;
+                    if (specialD==true){
+                        speC="DA";
+                    }else {
+                        speC="NE";
+                    }
+                    System.out.println(speC);
+                    System.out.println(cantonalComp.isSelected());
+
+                    //'"++"'
+                    //String q=String.format(Locale.US, "INSERT INTO info(schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD) VALUES ('"+schoolYear+"','"+stringify+"','"+student+"', '"+father+"', '"+studentLastname+"','"+stringifyDob+"', '"+generalVII+"','"+generalVIII+"','"+generalIX+"', '"+relSubj1+"', '"+relSubj2+"','"+relSubj3+"','"+relSubj4+"', '"+relSubj5+"', '"+relSubj6+"', '"+internationalC+"','"+federalC+"', '"+cantonalC+"','"+specialD+"')",123456789);
+                    String insertQuery="INSERT INTO info(schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD, sum) VALUES ('"+schoolYear+"','"+stringify+"','"+student+"', '"+father+"', '"+studentLastname+"','"+stringifyDob+"', '"+generalVII+"','"+generalVIII+"','"+generalIX+"', '"+dsb1+"' , '"+dsb2+"','"+dsb3+"','"+dsb4+"', '"+dsb5+"', '"+dsb6+"', '"+intC+"','"+fedC+"', '"+canC+"','"+speC+"', '"+resultSum+"')";
+                    connectionHandler.connectAndCrud(insertQuery);
+                    //# id, schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD
+                    //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
+                    //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
                 }
 
                 @Override

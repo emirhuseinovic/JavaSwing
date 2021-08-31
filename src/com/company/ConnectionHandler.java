@@ -36,7 +36,7 @@ public class ConnectionHandler {
         try {
             this.query = query;
 
-           Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/login", "root", "Arsenal2001-");
+           Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/data", "root", "Arsenal2001-");
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
             System.out.println("Connected");
