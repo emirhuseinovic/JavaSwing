@@ -169,6 +169,12 @@ public class Main {
         loginJFrame.getTheObject().setVisible(true);
         loginJFrame.getTheObject().setTitle("Prijava");
 
+        MyFrame <JFrame> resultsJFrame= new MyFrame<JFrame> (new JFrame());
+        resultsJFrame.getTheObject().setSize(new Dimension(1280, 768));
+        resultsJFrame.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        resultsJFrame.getTheObject().setVisible(true);
+        resultsJFrame.getTheObject().setTitle("Rezultati");
+
 
         //<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         ////"Icon made by Freepik from www.flaticon.com"
@@ -215,6 +221,11 @@ public class Main {
         loginPanel.getTheObject().setBackground(Color.darkGray);
         loginPanel.getTheObject().setLayout(new GridBagLayout());
 
+        MyFrame<JPanel> resultsPanel= new MyFrame <JPanel>(new JPanel());
+        resultsPanel.getTheObject().setSize(new Dimension(1280, 768));
+        resultsPanel.getTheObject().setBackground(Color.darkGray);
+        resultsPanel.getTheObject().setLayout(new GridBagLayout());
+
 
         // Creating icons
         // all icons wil be attributed in Credit page when the project is over
@@ -255,7 +266,7 @@ public class Main {
         labelBigPlus.getTheObject().setToolTipText("Za unos novog podatka pritisnite na oznaku + ili bilo gdje na sivom pravougaoniku");
 
 
-        // All other components
+        // School year and date panel
         MyFrame<JLabel> schoolYearLabel= new MyFrame<JLabel>(new JLabel("Školska godina"));
         schoolYearLabel.getTheObject().setPreferredSize(new Dimension(200,50));
         schoolYearLabel.getTheObject().setForeground(Color.gray);
@@ -658,6 +669,63 @@ public class Main {
          "Icon made by Freepik perfect from www.flaticon.com"
 
 */
+        // Components for resultsPanel
+
+        String [] listForSorting= {"id", "Ime", "Prezime", "Bodovi"};
+        MyFrame<JComboBox> sortList= new MyFrame<>(new JComboBox(listForSorting));
+        sortList.getTheObject().setPreferredSize(new Dimension(200,50));
+        sortList.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0, 0,0, Color.decode("#66d9ff")));
+
+        String [] listForSorting1= {"ASC", "DESC"};
+        MyFrame<JComboBox> sortList1= new MyFrame<>(new JComboBox(listForSorting1));
+        sortList1.getTheObject().setPreferredSize(new Dimension(200,50));
+        sortList1.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0, 0,2, Color.decode("#66d9ff")));
+
+        MyFrame<JLabel> searchLabel= new MyFrame<JLabel>(new JLabel("Korisničko ime ili šifra nisu ispravni"));
+        searchLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        searchLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        searchLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        searchLabel.getTheObject().setForeground(Color.red);
+
+        MyFrame<JTextField> searchData=new MyFrame<JTextField>(new JTextField());
+        searchData.getTheObject().setPreferredSize(new Dimension(400,50));
+        searchData.getTheObject().setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.decode("#66d9ff")));
+        searchData.getTheObject().setBackground(Color.darkGray);
+        searchData.getTheObject().setForeground(Color.lightGray);
+        searchData.getTheObject().setHorizontalAlignment(JTextField.CENTER);
+
+
+        Object [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Broj bodova"};
+        Object [] [] values={
+                {"Emir", "Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic",
+                        "Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic",}
+              /*  {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986", "Tuzla"},
+                {"03.109.1986"},*/
+
+
+
+        };
+        JTable jTable= new JTable(values,columns);
+
+        JScrollPane jScrollPane= new JScrollPane(jTable);
+        jTable.setFillsViewportHeight(true);
+        jScrollPane.createVerticalScrollBar();
+        jScrollPane.createHorizontalScrollBar();
+        jScrollPane.setPreferredSize(new Dimension(600,400));
+
+
+
+
+
+
 
         // Add to plusPanel
         constraints.gridx=0;
@@ -896,6 +964,30 @@ public class Main {
         constraints.insets=new Insets(10,0,0,0);
         loginPanel.getTheObject().add(loginButton.getTheObject(), constraints);
 
+        // add to results panel
+
+
+        constraints.gridx=0;
+        constraints.gridy=0;
+        constraints.insets=new Insets(0,0,5,0);
+        resultsPanel.getTheObject().add(sortList.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=0;
+        constraints.insets=new Insets(0,50,0,0);
+        resultsPanel.getTheObject().add(sortList1.getTheObject(),constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=0;
+        constraints.insets=new Insets(0,50,0,0);
+        resultsPanel.getTheObject().add(searchData.getTheObject(), constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=1;
+        constraints.insets=new Insets(0,50,0,0);
+        resultsPanel.getTheObject().add(jScrollPane, constraints);
+
+
 
 
 
@@ -924,6 +1016,7 @@ public class Main {
         popUpFrameTwo.getTheObject().add(plusPanelTwo.getTheObject());
         popUpFrameThree.getTheObject().add(plusPanelThree.getTheObject());
         loginJFrame.getTheObject().add(loginPanel.getTheObject());
+        resultsJFrame.getTheObject().add(resultsPanel.getTheObject());
 
 
 
@@ -1123,7 +1216,7 @@ public class Main {
                 @Override
                 public void mouseClicked(MouseEvent e) {
 
-
+                resultsJFrame.getTheObject().setVisible(true);
 
 
 
