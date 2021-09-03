@@ -174,8 +174,14 @@ public class Main {
         MyFrame <JFrame> resultsJFrame= new MyFrame<JFrame> (new JFrame());
         resultsJFrame.getTheObject().setSize(new Dimension(1280, 768));
         resultsJFrame.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        resultsJFrame.getTheObject().setVisible(true);
+        //resultsJFrame.getTheObject().setVisible(false);
         resultsJFrame.getTheObject().setTitle("Rezultati");
+
+        JFrame RsFrame= new JFrame("Tabela");
+        RsFrame.setSize(new Dimension(1280, 768));
+        RsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        //RsFrame.setVisible(false);
+
 
 
         //<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -1320,6 +1326,7 @@ public class Main {
                     //# id, schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD
                     //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
                     //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
+
                 }
 
                 @Override
@@ -1423,17 +1430,14 @@ public class Main {
 
 
                     JTable jTable= new JTable(tableModel);
-                    //jTable.setModel(tableModel);
                     JScrollPane jScrollPane= new JScrollPane(jTable);
                     jTable.setFillsViewportHeight(true);
                     jScrollPane.createVerticalScrollBar();
                     jScrollPane.createHorizontalScrollBar();
-                    jScrollPane.setPreferredSize(new Dimension(600,400));
-                    JFrame frame= new JFrame();
-                    frame.setSize(new Dimension(800, 600));
-                    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-                    frame.setVisible(true);
-                    frame.add(jScrollPane);
+                    jScrollPane.setPreferredSize(new Dimension(1280,768));
+                    RsFrame.setVisible(true);
+                    RsFrame.add(jScrollPane);
+
 
 
 
@@ -1447,7 +1451,6 @@ public class Main {
 
                 }
             });
-
 
 
     }
