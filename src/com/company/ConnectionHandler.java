@@ -1,5 +1,7 @@
 package com.company;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.util.*;
@@ -11,12 +13,16 @@ public class ConnectionHandler {
 
 
         try {
+
             this.query = query;
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/login", "root", "Arsenal2001-");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/data", "root", "Arsenal2001-");
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println("Connected");
-            //
+
+
+
+
 
             return resultSet;
 

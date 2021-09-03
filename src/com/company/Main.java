@@ -11,17 +11,19 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
-
+import javax.swing.table.DefaultTableModel;
 
 
 public class Main {
@@ -695,31 +697,6 @@ public class Main {
         searchData.getTheObject().setHorizontalAlignment(JTextField.CENTER);
 
 
-        Object [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Broj bodova"};
-        Object [] [] values={
-                {"Emir", "Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic",
-                        "Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic","Huseinovic",}
-              /*  {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986", "Tuzla"},
-                {"03.109.1986"},*/
-
-
-
-        };
-        JTable jTable= new JTable(values,columns);
-
-        JScrollPane jScrollPane= new JScrollPane(jTable);
-        jTable.setFillsViewportHeight(true);
-        jScrollPane.createVerticalScrollBar();
-        jScrollPane.createHorizontalScrollBar();
-        jScrollPane.setPreferredSize(new Dimension(600,400));
 
 
 
@@ -982,10 +959,6 @@ public class Main {
         constraints.insets=new Insets(0,50,0,0);
         resultsPanel.getTheObject().add(searchData.getTheObject(), constraints);
 
-        constraints.gridx=0;
-        constraints.gridy=1;
-        constraints.insets=new Insets(0,50,0,0);
-        resultsPanel.getTheObject().add(jScrollPane, constraints);
 
 
 
@@ -1366,6 +1339,111 @@ public class Main {
 
                 @Override
                 public void mouseExited(MouseEvent e) {
+
+                }
+            });
+
+            searchData.getTheObject().addMouseMotionListener(new MouseMotionListener() {
+                String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Broj bodova"};
+                Object [] [] values;
+
+                int id;
+                Object [] tempArray;
+                DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+                @Override
+                public void mouseDragged(MouseEvent e) {
+
+                   ResultSet set=connectionHandler.connectAndFetch("SELECT * FROM info");
+                    try {
+                        while (set.next()){
+                            int i=0;
+
+
+                            i++;
+
+                        }
+                    }catch (Exception exception){
+                        exception.printStackTrace();
+                    }
+                    ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info");
+                    try {
+                        while (set1.next()){
+                            // dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
+                            tempArray=new Object[]{
+                                    set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                    set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                    set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                    set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
+                                    set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getString("sum")};
+                            System.out.println(tempArray.toString());
+                                    tableModel.addRow(tempArray);
+
+                        }
+                    }catch (Exception exception){
+                        exception.printStackTrace();
+                    }
+                 /* ResultSet set=connectionHandler.connectAndFetch("SELECT * FROM info");
+                  int rowsCount=0;
+                  int columnCount=0;
+
+                  try {
+                      while (set.next()){
+                    rowsCount++;
+
+                      }
+
+                  }catch (Exception e1){
+                      e1.printStackTrace();
+                  }
+                    System.out.println("Rowscount je "+rowsCount);
+                    values=new Object[rowsCount][columns.length];
+
+
+                    ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info");
+                    int columnIndexIterator=0;
+                    try {
+                        while (set1.next()){
+                            System.out.println(columnIndexIterator);
+                            for (int i=0; i<rowsCount; i++){
+                                for (int y=0; y<columns.length;y++){
+                                    values[i][columnIndexIterator]=set1.getInt(columnIndexIterator);
+                                    //System.out.println(values[i][y]= String.valueOf(set1.getInt(columnIndexIterator)));
+
+                                    columnIndexIterator++;
+                                }
+                            }
+
+                        }
+
+                    }catch (Exception e1){
+                        e1.printStackTrace();
+                    }
+
+*/
+
+
+                    JTable jTable= new JTable(tableModel);
+                    //jTable.setModel(tableModel);
+                    JScrollPane jScrollPane= new JScrollPane(jTable);
+                    jTable.setFillsViewportHeight(true);
+                    jScrollPane.createVerticalScrollBar();
+                    jScrollPane.createHorizontalScrollBar();
+                    jScrollPane.setPreferredSize(new Dimension(600,400));
+                    JFrame frame= new JFrame();
+                    frame.setSize(new Dimension(800, 600));
+                    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                    frame.setVisible(true);
+                    frame.add(jScrollPane);
+
+
+
+
+
+
+                }
+
+                @Override
+                public void mouseMoved(MouseEvent e) {
 
                 }
             });
