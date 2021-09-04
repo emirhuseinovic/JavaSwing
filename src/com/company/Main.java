@@ -144,7 +144,7 @@ public class Main {
         MyFrame <JFrame> obj= new MyFrame<JFrame> (new JFrame());
         obj.getTheObject().setSize(new Dimension(1280, 768));
         obj.getTheObject().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        obj.getTheObject().setVisible(true);
+        //obj.getTheObject().setVisible(true);
         obj.getTheObject().setTitle("Glavni panel");
 
         MyFrame <JFrame> popUpFrame= new MyFrame<JFrame> (new JFrame());
@@ -1056,6 +1056,8 @@ public class Main {
             }
         });
 
+
+
         nextButton.getTheObject().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -1145,12 +1147,13 @@ public class Main {
 
                    // String loginQuery="INSERT INTO users (username, password) VALUES ('"+usernameCred+"', '"+stringifyPassword+"')";
                    // connectionHandler.connectAndCrud(loginQuery);
-                 ResultSet set=   connectionHandler.connectAndFetch("SELECT * FROM users");
+                 ResultSet set=   connectionHandler.connectAndLogin("SELECT * FROM users");
                  try {
                      while (set.next()){
                          if (set.getString("username").equals(usernameCred)&& set.getString("password").equals(stringifyPassword)){
                              System.out.println("Validno");
                              loginJFrame.getTheObject().setVisible(false);
+                             obj.getTheObject().setVisible(true);
 
                          }else {
                              System.out.println("Korisnicko ime ili šifra nisu tačni");
@@ -1196,6 +1199,9 @@ public class Main {
                 public void mouseClicked(MouseEvent e) {
 
                 resultsJFrame.getTheObject().setVisible(true);
+                popUpFrame.getTheObject().setVisible(false);
+                popUpFrameTwo.getTheObject().setVisible(false);
+                popUpFrameThree.getTheObject().setVisible(false);
 
 
 
@@ -1321,12 +1327,12 @@ public class Main {
 
                     //'"++"'
                     //String q=String.format(Locale.US, "INSERT INTO info(schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD) VALUES ('"+schoolYear+"','"+stringify+"','"+student+"', '"+father+"', '"+studentLastname+"','"+stringifyDob+"', '"+generalVII+"','"+generalVIII+"','"+generalIX+"', '"+relSubj1+"', '"+relSubj2+"','"+relSubj3+"','"+relSubj4+"', '"+relSubj5+"', '"+relSubj6+"', '"+internationalC+"','"+federalC+"', '"+cantonalC+"','"+specialD+"')",123456789);
-                    String insertQuery="INSERT INTO info(schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD, sum) VALUES ('"+schoolYear+"','"+stringify+"','"+student+"', '"+father+"', '"+studentLastname+"','"+stringifyDob+"', '"+generalVII+"','"+generalVIII+"','"+generalIX+"', '"+dsb1+"' , '"+dsb2+"','"+dsb3+"','"+dsb4+"', '"+dsb5+"', '"+dsb6+"', '"+intC+"','"+fedC+"', '"+canC+"','"+speC+"', '"+sumSumare+"')";
+                    String insertQuery="INSERT INTO info(schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD, ex, sum) VALUES ('"+schoolYear+"','"+stringify+"','"+student+"', '"+father+"', '"+studentLastname+"','"+stringifyDob+"', '"+generalVII+"','"+generalVIII+"','"+generalIX+"', '"+dsb1+"' , '"+dsb2+"','"+dsb3+"','"+dsb4+"', '"+dsb5+"', '"+dsb6+"', '"+intC+"','"+fedC+"', '"+canC+"','"+speC+"','"+extString+"', '"+sumSumare+"')";
                     connectionHandler.connectAndCrud(insertQuery);
                     //# id, schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD
                     //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
                     //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
-
+                    //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC varchar(256) not null, fC varchar(256) not null, cC varchar(256) not null, sD varchar(256) not null, ex double not null, sum double not null);
                 }
 
                 @Override
@@ -1351,7 +1357,7 @@ public class Main {
             });
 
             searchData.getTheObject().addMouseMotionListener(new MouseMotionListener() {
-                String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Broj bodova"};
+                String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
                 Object [] [] values;
 
                 int id;
@@ -1381,7 +1387,7 @@ public class Main {
                                     set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
                                     set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
                                     set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
-                                    set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getString("sum")};
+                                    set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
                             System.out.println(tempArray.toString());
                                     tableModel.addRow(tempArray);
 
