@@ -1,8 +1,6 @@
 package com.company;
 
 
-//use data;
-//create table entrys (id int not null auto_increment primary key, schoolYear varchar(256) not null, entryDate date not null, name varchar(256) not null, fatherName varchar(256) not null, surname varchar(256) not null, dob date not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC boolean not null, fC boolean not null, cC boolean not null, sD boolean not null);
 
 import com.toedter.calendar.JCalendar;
 
@@ -137,14 +135,12 @@ public class Main {
 
         //JDBC
         ConnectionHandler connectionHandler=new ConnectionHandler();
-       // connectionHandler.connect();
 
         // Creating JFrame
 
         MyFrame <JFrame> obj= new MyFrame<JFrame> (new JFrame());
         obj.getTheObject().setSize(new Dimension(1280, 768));
         obj.getTheObject().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //obj.getTheObject().setVisible(true);
         obj.getTheObject().setTitle("Glavni panel");
 
         MyFrame <JFrame> popUpFrame= new MyFrame<JFrame> (new JFrame());
@@ -162,8 +158,7 @@ public class Main {
         popUpFrameThree.getTheObject().setSize(new Dimension(1280, 768));
         popUpFrameThree.getTheObject().setTitle("Uspjeh");
         popUpFrameThree.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //ImageIcon jFrameIcon=new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/boat(1).png");
-        //popUpFrameThree.getTheObject().setIconImage(jFrameIcon.getImage());
+
 
         MyFrame <JFrame> loginJFrame= new MyFrame<JFrame> (new JFrame());
         loginJFrame.getTheObject().setSize(new Dimension(1280, 768));
@@ -174,13 +169,13 @@ public class Main {
         MyFrame <JFrame> resultsJFrame= new MyFrame<JFrame> (new JFrame());
         resultsJFrame.getTheObject().setSize(new Dimension(1280, 768));
         resultsJFrame.getTheObject().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //resultsJFrame.getTheObject().setVisible(false);
+
         resultsJFrame.getTheObject().setTitle("Rezultati");
 
         JFrame RsFrame= new JFrame("Tabela");
         RsFrame.setSize(new Dimension(1280, 768));
         RsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        //RsFrame.setVisible(false);
+
 
 
 
@@ -588,14 +583,11 @@ public class Main {
         extGradData.setForeground(Color.lightGray);
 
 
-
         MyFrame<JLabel> extGrad= new MyFrame<>(new JLabel("Rezultat eksterne mature u %"));
         extGrad.getTheObject().setPreferredSize(new Dimension(240,50));
         extGrad.getTheObject().setHorizontalAlignment(JLabel.CENTER);
         extGrad.getTheObject().setBackground(Color.DARK_GRAY);
         extGrad.getTheObject().setForeground(Color.gray);
-
-
 
 
         MyFrame<JButton> backButtonPoPThree= new MyFrame<JButton>(new JButton("Nazad"));
@@ -668,15 +660,6 @@ public class Main {
         error.getTheObject().setBackground(Color.DARK_GRAY);
         error.getTheObject().setForeground(Color.red);
 
-       /* ImageIcon badgeIcon= new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/badge.png");
-        JLabel badgeIconLabel= new JLabel(badgeIcon);
-        badgeIconLabel.setPreferredSize(new Dimension(32,32));
-        badgeIconLabel.setBounds(600,200, 32,32);
-
-         <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-         "Icon made by Freepik perfect from www.flaticon.com"
-
-*/
         // Components for resultsPanel
 
         String [] listForSorting= {"id", "Ime", "Prezime", "Bodovi"};
@@ -702,7 +685,16 @@ public class Main {
         searchData.getTheObject().setForeground(Color.lightGray);
         searchData.getTheObject().setHorizontalAlignment(JTextField.CENTER);
 
+        JButton sortButton= new JButton("Pretraga po imenu");
+        sortButton.setForeground(Color.decode("#66d9ff"));
+        sortButton.setPreferredSize(new Dimension(200,50));
+        sortButton.setBackground(Color.darkGray);
 
+
+        JButton showButton= new JButton("Prikaži tabelu");
+        showButton.setForeground(Color.decode("#66d9ff"));
+        showButton.setPreferredSize(new Dimension(200,50));
+        showButton.setBackground(Color.darkGray);
 
 
 
@@ -919,12 +911,11 @@ public class Main {
         // Add to loginPanel
         constraints.gridx=0;
         constraints.gridy=0;
-        constraints.insets=new Insets(10,0,0,0);
+        constraints.insets=new Insets(10,0,0,50);
         loginPanel.getTheObject().add(usernameIcon.getTheObject(),constraints);
 
         constraints.gridx=1;
         constraints.gridy=0;
-        constraints.insets=new Insets(10,0,0,0);
         loginPanel.getTheObject().add(username.getTheObject(),constraints);
 
         constraints.gridx=0;
@@ -964,6 +955,16 @@ public class Main {
         constraints.gridy=0;
         constraints.insets=new Insets(0,50,0,0);
         resultsPanel.getTheObject().add(searchData.getTheObject(), constraints);
+
+        constraints.gridx=3;
+        constraints.gridy=0;
+        constraints.insets=new Insets(0,50,0,0);
+        resultsPanel.getTheObject().add(sortButton, constraints);
+
+        constraints.gridx=3;
+        constraints.gridy=3;
+        constraints.insets=new Insets(0,50,0,0);
+        resultsPanel.getTheObject().add(showButton, constraints);
 
 
 
@@ -1145,8 +1146,7 @@ public class Main {
                     String usernameCred=username.getTheObject().getText();
                     String stringifyPassword= new String(password.getTheObject().getPassword());
 
-                   // String loginQuery="INSERT INTO users (username, password) VALUES ('"+usernameCred+"', '"+stringifyPassword+"')";
-                   // connectionHandler.connectAndCrud(loginQuery);
+
                  ResultSet set=   connectionHandler.connectAndLogin("SELECT * FROM users");
                  try {
                      while (set.next()){
@@ -1205,8 +1205,6 @@ public class Main {
 
 
 
-
-
                     String schoolYear= (String) schoolYearsListData.getTheObject().getSelectedItem();
 
                     Date jcalValue=jCalendar.getTheObject().getDate();
@@ -1223,8 +1221,6 @@ public class Main {
                    LocalDateTime selectedDob=convertDate(dobValue);
                    DateTimeFormatter formatter1=DateTimeFormatter.ofPattern("dd-MM-yyyy");
                    String stringifyDob=formatter1.format(selectedDob);
-
-
 
 
 
@@ -1269,9 +1265,6 @@ public class Main {
                     double dsb6=Double.parseDouble(sb6);
 
                     String extString=extGradData.getText();
-
-
-
 
 
                     boolean internationalC=internationalComp.isSelected();
@@ -1320,18 +1313,12 @@ public class Main {
                     double sumSumare=addPoints(genVI)+ addPoints(genVII)+  addPoints(genVIII)+ addPoints(genIX)+
                             addPointsRp(dsb1)+addPointsRp(dsb2)+addPointsRp(dsb3)+addPointsRp(dsb4)+addPointsRp(dsb5)+addPointsRp(dsb6)
                             +exCalc(extString)+ competitionsSum+ hasSpecialDiplom;
-                    System.out.println(sumSumare);
-                    System.out.println(exCalc(extString));
 
 
-
-                    //'"++"'
                     //String q=String.format(Locale.US, "INSERT INTO info(schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD) VALUES ('"+schoolYear+"','"+stringify+"','"+student+"', '"+father+"', '"+studentLastname+"','"+stringifyDob+"', '"+generalVII+"','"+generalVIII+"','"+generalIX+"', '"+relSubj1+"', '"+relSubj2+"','"+relSubj3+"','"+relSubj4+"', '"+relSubj5+"', '"+relSubj6+"', '"+internationalC+"','"+federalC+"', '"+cantonalC+"','"+specialD+"')",123456789);
                     String insertQuery="INSERT INTO info(schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD, ex, sum) VALUES ('"+schoolYear+"','"+stringify+"','"+student+"', '"+father+"', '"+studentLastname+"','"+stringifyDob+"', '"+generalVII+"','"+generalVIII+"','"+generalIX+"', '"+dsb1+"' , '"+dsb2+"','"+dsb3+"','"+dsb4+"', '"+dsb5+"', '"+dsb6+"', '"+intC+"','"+fedC+"', '"+canC+"','"+speC+"','"+extString+"', '"+sumSumare+"')";
                     connectionHandler.connectAndCrud(insertQuery);
-                    //# id, schoolYear, entryDate, name, fatherName, surname, dob, gs7, gs8, gs9, relSubj18, relSubj28, relSubj38, relSubj19, relSubj29, relSubj39, iC, fC, cC, sD
-                    //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
-                    //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
+
                     //create table info (id int not null auto_increment primary key, schoolYear varchar (256) not null, entryDate varchar (256) not null, name varchar (256) not null, fatherName varchar (256) not null, surname varchar (256) not null, dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC varchar(256) not null, fC varchar(256) not null, cC varchar(256) not null, sD varchar(256) not null, ex double not null, sum double not null);
                 }
 
@@ -1381,74 +1368,32 @@ public class Main {
                     ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info");
                     try {
                         while (set1.next()){
-                            // dob varchar (256) not null, gs7 double not null, gs8 double not null, gs9 double not null, relSubj18 double not null, relSubj28 double not null, relSubj38 double not null, relSubj19 double not null, relSubj29 double not null, relSubj39 double not null, iC Boolean not null, fC Boolean not null, cC Boolean not null, sD Boolean not null);
+
                             tempArray=new Object[]{
                                     set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
                                     set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
                                     set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
                                     set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
                                     set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
-                            System.out.println(tempArray.toString());
+
                                     tableModel.addRow(tempArray);
 
                         }
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }
-                 /* ResultSet set=connectionHandler.connectAndFetch("SELECT * FROM info");
-                  int rowsCount=0;
-                  int columnCount=0;
-
-                  try {
-                      while (set.next()){
-                    rowsCount++;
-
-                      }
-
-                  }catch (Exception e1){
-                      e1.printStackTrace();
-                  }
-                    System.out.println("Rowscount je "+rowsCount);
-                    values=new Object[rowsCount][columns.length];
-
-
-                    ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info");
-                    int columnIndexIterator=0;
-                    try {
-                        while (set1.next()){
-                            System.out.println(columnIndexIterator);
-                            for (int i=0; i<rowsCount; i++){
-                                for (int y=0; y<columns.length;y++){
-                                    values[i][columnIndexIterator]=set1.getInt(columnIndexIterator);
-                                    //System.out.println(values[i][y]= String.valueOf(set1.getInt(columnIndexIterator)));
-
-                                    columnIndexIterator++;
-                                }
-                            }
-
-                        }
-
-                    }catch (Exception e1){
-                        e1.printStackTrace();
-                    }
-
-*/
 
 
                     JTable jTable= new JTable(tableModel);
+                    jTable.setPreferredSize(new Dimension(1280,720));
                     JScrollPane jScrollPane= new JScrollPane(jTable);
+                    jTable.setFillsViewportHeight(true);
                     jTable.setFillsViewportHeight(true);
                     jScrollPane.createVerticalScrollBar();
                     jScrollPane.createHorizontalScrollBar();
                     jScrollPane.setPreferredSize(new Dimension(1280,768));
                     RsFrame.setVisible(true);
                     RsFrame.add(jScrollPane);
-
-
-
-
-
-
 
                 }
 
