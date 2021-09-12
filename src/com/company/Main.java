@@ -1363,14 +1363,14 @@ public class Main {
                             RsFrame.setVisible(true);
                             RsFrame.add(jScrollPane);
 
-                            ConnectionHandler.closeConnection();
+
 
 
                         }
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }
-
+                    ConnectionHandler.closeConnection();
 
 
 
