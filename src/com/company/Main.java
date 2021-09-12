@@ -1329,29 +1329,17 @@ public class Main {
                 }
             });
 
-            searchData.getTheObject().addMouseMotionListener(new MouseMotionListener() {
-                String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
-                Object [] [] values;
 
-                int id;
-                Object [] tempArray;
-                DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+            showButton.addMouseListener(new MouseListener() {
                 @Override
-                public void mouseDragged(MouseEvent e) {
-
-                /*   ResultSet set=connectionHandler.connectAndFetch("SELECT * FROM info");
-                    try {
-                        while (set.next()){
-                            int i=0;
-
-
-                            i++;
-
-                        }
-                    }catch (Exception exception){
-                        exception.printStackTrace();
-                    }*/
+                public void mouseClicked(MouseEvent e) {
+                    String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
+                    Object [] [] values = new Object[0][];
+                    
+                    Object [] tempArray;
+                    DefaultTableModel tableModel= new DefaultTableModel(values,columns);
                     ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info");
+
                     try {
                         while (set1.next()){
 
@@ -1362,7 +1350,21 @@ public class Main {
                                     set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
                                     set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
 
-                                    tableModel.addRow(tempArray);
+                            tableModel.addRow(tempArray);
+
+                            JTable jTable= new JTable(tableModel);
+                            jTable.setPreferredSize(new Dimension(1280,720));
+                            JScrollPane jScrollPane= new JScrollPane(jTable);
+                            jTable.setFillsViewportHeight(true);
+                            jTable.setFillsViewportHeight(true);
+                            jScrollPane.createVerticalScrollBar();
+                            jScrollPane.createHorizontalScrollBar();
+                            jScrollPane.setPreferredSize(new Dimension(1280,768));
+                            RsFrame.setVisible(true);
+                            RsFrame.add(jScrollPane);
+
+                            ConnectionHandler.closeConnection();
+
 
                         }
                     }catch (Exception exception){
@@ -1370,25 +1372,28 @@ public class Main {
                     }
 
 
-                    JTable jTable= new JTable(tableModel);
-                    jTable.setPreferredSize(new Dimension(1280,720));
-                    JScrollPane jScrollPane= new JScrollPane(jTable);
-                    jTable.setFillsViewportHeight(true);
-                    jTable.setFillsViewportHeight(true);
-                    jScrollPane.createVerticalScrollBar();
-                    jScrollPane.createHorizontalScrollBar();
-                    jScrollPane.setPreferredSize(new Dimension(1280,768));
-                    RsFrame.setVisible(true);
-                    RsFrame.add(jScrollPane);
 
 
-
-                    ConnectionHandler.closeConnection();
 
                 }
 
                 @Override
-                public void mouseMoved(MouseEvent e) {
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
 
                 }
             });
