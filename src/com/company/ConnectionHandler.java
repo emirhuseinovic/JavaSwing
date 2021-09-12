@@ -19,7 +19,7 @@ public class ConnectionHandler {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/datei", "root", "Arsenal2001-");
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
-            System.out.println("Connected");
+            System.out.println("connectAndFetch is connected");
 
 
 
@@ -32,6 +32,7 @@ public class ConnectionHandler {
 
         } catch (Exception e) {
             e.printStackTrace();
+
         }
 
 
@@ -46,7 +47,9 @@ public class ConnectionHandler {
            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/datei", "root", "Arsenal2001-");
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
-            System.out.println("Connected");
+            connection.close();
+            System.out.println("connectAndCrud data is inserted");
+            System.out.println("connectAndCrud is closed");
 
 
 
@@ -64,8 +67,11 @@ public class ConnectionHandler {
                 PreparedStatement preparedStatement = connection.prepareStatement(credentials);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 System.out.println("Login successfull");
+                /*connection.close();
+                System.out.println("connectAndLoginClosed");
 
 
+*/
 
 
 
@@ -80,6 +86,16 @@ public class ConnectionHandler {
 
 
             return null;
+        }
+
+        public static void closeConnection(){
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/login", "root", "Arsenal2001-");
+            System.out.println(" closeConnection closed");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         }
         }
 

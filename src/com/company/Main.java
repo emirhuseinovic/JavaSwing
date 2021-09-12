@@ -187,6 +187,7 @@ public class Main {
         verticalBox.setSize(new Dimension(100,50));
         GridBagConstraints constraints= new GridBagConstraints();
         GridBagConstraints constraints2= new GridBagConstraints();
+        GridBagConstraints gridBagConstraintsTwo= new GridBagConstraints();
 
 
 
@@ -692,6 +693,36 @@ public class Main {
         showButton.setPreferredSize(new Dimension(200,50));
         showButton.setBackground(Color.darkGray);
 
+        // Add to loginPanel
+        constraints.gridx=0;
+        constraints.gridy=0;
+        constraints.insets=new Insets(30,0,0,140);
+        loginPanel.getTheObject().add(usernameIcon.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=0;
+        constraints.insets=new Insets(20,-130,0,0);
+        loginPanel.getTheObject().add(username.getTheObject(),constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=1;
+        constraints.insets=new Insets(30,0,0,140);
+        loginPanel.getTheObject().add(passwordIcon.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=1;
+        constraints.insets=new Insets(20,-130,0,0);
+        loginPanel.getTheObject().add(password.getTheObject(),constraints);
+
+        constraints.gridx=0;
+        constraints.gridy=3;
+        constraints.insets=new Insets(20,0,0,-60);
+        loginPanel.getTheObject().add(newAccountLink.getTheObject(),constraints);
+
+        constraints.gridx=1;
+        constraints.gridy=3;
+        constraints.insets=new Insets(20,70,0,0);
+        loginPanel.getTheObject().add(loginButton.getTheObject(), constraints);
 
 
 
@@ -701,238 +732,206 @@ public class Main {
         // Add to plusPanel
         constraints.gridx=0;
         constraints.gridy=0;
-       // constraints.insets=new Insets(0,100,0, 0);
         plusPanel.getTheObject().add(schoolYearsListData.getTheObject(), constraints);
 
         constraints.gridx=0;
         constraints.gridy=1;
-        //constraints.insets=new Insets(0,200,0,0);
         plusPanel.getTheObject().add(schoolYearLabel.getTheObject(), constraints);
 
 
         constraints.gridx=0;
         constraints.gridy=2;
-        //constraints.insets=new Insets(10,0,0,0);
         plusPanel.getTheObject().add(jCalendar.getTheObject(), constraints);
 
         constraints.gridx=0;
         constraints.gridy=3;
-       // constraints.insets=new Insets(10,0,0,0);
         plusPanel.getTheObject().add(currentDateLabel.getTheObject(), constraints);
 
-        constraints.gridx=1;
+        constraints.gridx=0;
         constraints.gridy=4;
-       // constraints.insets=new Insets(10,50,0,0);
+        constraints.insets=new Insets(0,650,0,0);
         plusPanel.getTheObject().add(nextButton.getTheObject(), constraints);
 
         // Add to plusPanelTwo
 
-        constraints.gridx=0;
-        constraints.gridy=0;
-        plusPanelTwo.getTheObject().add(studentName.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=0;
+        plusPanelTwo.getTheObject().add(studentName.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=1;
-        plusPanelTwo.getTheObject().add(studentNameLabel.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=1;
+        plusPanelTwo.getTheObject().add(studentNameLabel.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=2;
-        plusPanelTwo.getTheObject().add(studentFatherName.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=2;
+        plusPanelTwo.getTheObject().add(studentFatherName.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=3;
-        plusPanelTwo.getTheObject().add(studentFatherNameLabel.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=3;
+        plusPanelTwo.getTheObject().add(studentFatherNameLabel.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=4;
-        plusPanelTwo.getTheObject().add(studentSurname.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=4;
+        plusPanelTwo.getTheObject().add(studentSurname.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=5;
-        plusPanelTwo.getTheObject().add(studentSurnameLabel.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=5;
+        plusPanelTwo.getTheObject().add(studentSurnameLabel.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=6;
-        plusPanelTwo.getTheObject().add(dob.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=6;
+        plusPanelTwo.getTheObject().add(dob.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=7;
-        plusPanelTwo.getTheObject().add(dobLabel.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=7;
+        plusPanelTwo.getTheObject().add(dobLabel.getTheObject(), gridBagConstraintsTwo);
 
-        constraints.gridx=0;
-        constraints.gridy=8;
-        plusPanelTwo.getTheObject().add(previousButtonPPT.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=8;
+        plusPanelTwo.getTheObject().add(previousButtonPPT.getTheObject(), gridBagConstraintsTwo);
 
 
-        constraints.gridx=1;
-        constraints.gridy=8;
-
-        plusPanelTwo.getTheObject().add(nextButtonPPT.getTheObject(), constraints);
+        gridBagConstraintsTwo.gridx=0;
+        gridBagConstraintsTwo.gridy=8;
+        gridBagConstraintsTwo.insets= new Insets(0,600,0, 0);
+        plusPanelTwo.getTheObject().add(nextButtonPPT.getTheObject(), gridBagConstraintsTwo);
 
 
         // Add to plusPanelThree
-        constraints.gridx=0;
-        constraints.gridy=0;
-        plusPanelThree.getTheObject().add(gradesData.getTheObject(), constraints);
+        GridBagConstraints gridBagConstraintsThree= new GridBagConstraints();
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=0;
+        plusPanelThree.getTheObject().add(gradesData.getTheObject(), gridBagConstraintsThree);
 
-        constraints.gridx=0;
-        constraints.gridy=1;
-        plusPanelThree.getTheObject().add(sixthGradeLabel.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=1;
+        plusPanelThree.getTheObject().add(sixthGradeLabel.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=0;
-        constraints.gridy=2;
-        plusPanelThree.getTheObject().add(gradesDataVII.getTheObject(), constraints);
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=2;
+        plusPanelThree.getTheObject().add(gradesDataVII.getTheObject(), gridBagConstraintsThree);
 
-        constraints.gridx=0;
-        constraints.gridy=3;
-        plusPanelThree.getTheObject().add(seventhGradeLabel.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=3;
+        plusPanelThree.getTheObject().add(seventhGradeLabel.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=0;
-        constraints.gridy=4;
-        plusPanelThree.getTheObject().add(gradesDataVIII.getTheObject(), constraints);
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=4;
+        plusPanelThree.getTheObject().add(gradesDataVIII.getTheObject(), gridBagConstraintsThree);
 
 
-        constraints.gridx=0;
-        constraints.gridy=5;
-        plusPanelThree.getTheObject().add(eightGradeLabel.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=5;
+        plusPanelThree.getTheObject().add(eightGradeLabel.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=0;
-        constraints.gridy=6;
-        plusPanelThree.getTheObject().add(gradesDataIX.getTheObject(), constraints);
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=6;
+        plusPanelThree.getTheObject().add(gradesDataIX.getTheObject(), gridBagConstraintsThree);
 
-        constraints.gridx=0;
-        constraints.gridy=7;
-        plusPanelThree.getTheObject().add(ninthGradeLabel.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=0;
+        gridBagConstraintsThree.gridy=7;
+        plusPanelThree.getTheObject().add(ninthGradeLabel.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=1;
-        constraints.gridy=0;
+        gridBagConstraintsThree.gridx=1;
+        gridBagConstraintsThree.gridy=0;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj1.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=1;
+        gridBagConstraintsThree.gridy=1;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj8Gr.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=1;
+        gridBagConstraintsThree.gridy=2;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj2.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=1;
+        gridBagConstraintsThree.gridy=3;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj8Gr2.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=1;
+        gridBagConstraintsThree.gridy=4;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj3.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=1;
+        gridBagConstraintsThree.gridy=5;
         constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj1.getTheObject(),constraints);
+        plusPanelThree.getTheObject().add(relSubj8Gr3.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=1;
-        constraints.gridy=1;
+        gridBagConstraintsThree.gridx=2;
+        gridBagConstraintsThree.gridy=0;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj4.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=2;
+        gridBagConstraintsThree.gridy=1;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj9Gr.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=2;
+        gridBagConstraintsThree.gridy=2;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj5.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=2;
+        gridBagConstraintsThree.gridy=3;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj9Gr2.getTheObject(),gridBagConstraintsThree);
+
+        gridBagConstraintsThree.gridx=2;
+        gridBagConstraintsThree.gridy=4;
         constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj8Gr.getTheObject(),constraints);
+        plusPanelThree.getTheObject().add(relSubj6.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=1;
-        constraints.gridy=2;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj2.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=2;
+        gridBagConstraintsThree.gridy=5;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(relSubj9Gr3.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=1;
-        constraints.gridy=3;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj8Gr2.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=3;
+        gridBagConstraintsThree.gridy=0;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(internationalComp,gridBagConstraintsThree);
 
-        constraints.gridx=1;
-        constraints.gridy=4;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj3.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=3;
+        gridBagConstraintsThree.gridy=1;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(federalComp,gridBagConstraintsThree);
 
-        constraints.gridx=1;
-        constraints.gridy=5;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj8Gr3.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=3;
+        gridBagConstraintsThree.gridy=2;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(cantonalComp,gridBagConstraintsThree);
 
-        constraints.gridx=2;
-        constraints.gridy=0;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj4.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=3;
+        gridBagConstraintsThree.gridy=3;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(specialDiplom,gridBagConstraintsThree);
 
-        constraints.gridx=2;
-        constraints.gridy=1;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj9Gr.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=3;
+        gridBagConstraintsThree.gridy=4;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(extGradData ,gridBagConstraintsThree);
 
-        constraints.gridx=2;
-        constraints.gridy=2;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj5.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=3;
+        gridBagConstraintsThree.gridy=5;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(extGrad.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=2;
-        constraints.gridy=3;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj9Gr2.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=2;
+        gridBagConstraintsThree.gridy=7;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(backButtonPoPThree.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=2;
-        constraints.gridy=4;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj6.getTheObject(),constraints);
+        gridBagConstraintsThree.gridx=3;
+        gridBagConstraintsThree.gridy=7;
+        gridBagConstraintsThree.insets= new Insets(10,20,0, 0);
+        plusPanelThree.getTheObject().add(finishButtonPoPThree.getTheObject(),gridBagConstraintsThree);
 
-        constraints.gridx=2;
-        constraints.gridy=5;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(relSubj9Gr3.getTheObject(),constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=0;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(internationalComp,constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=1;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(federalComp,constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=2;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(cantonalComp,constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=3;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(specialDiplom,constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=4;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(extGradData ,constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=5;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(extGrad.getTheObject(),constraints);
-
-        constraints.gridx=2;
-        constraints.gridy=7;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(backButtonPoPThree.getTheObject(),constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=7;
-        constraints.insets= new Insets(10,20,0, 0);
-        plusPanelThree.getTheObject().add(finishButtonPoPThree.getTheObject(),constraints);
-
-        // Add to loginPanel
-        constraints.gridx=0;
-        constraints.gridy=0;
-        constraints.insets=new Insets(10,0,0,50);
-        loginPanel.getTheObject().add(usernameIcon.getTheObject(),constraints);
-
-        constraints.gridx=1;
-        constraints.gridy=0;
-        loginPanel.getTheObject().add(username.getTheObject(),constraints);
-
-        constraints.gridx=0;
-        constraints.gridy=1;
-        constraints.insets=new Insets(10,0,0,0);
-        loginPanel.getTheObject().add(passwordIcon.getTheObject(),constraints);
-
-        constraints.gridx=1;
-        constraints.gridy=1;
-        constraints.insets=new Insets(10,0,0,0);
-        loginPanel.getTheObject().add(password.getTheObject(),constraints);
-
-        constraints.gridx=0;
-        constraints.gridy=3;
-        constraints.insets=new Insets(10,0,0,0);
-        loginPanel.getTheObject().add(newAccountLink.getTheObject(),constraints);
-
-        constraints.gridx=1;
-        constraints.gridy=3;
-        constraints.insets=new Insets(10,0,0,0);
-        loginPanel.getTheObject().add(loginButton.getTheObject(), constraints);
 
         // add to results panel
 
@@ -952,14 +951,15 @@ public class Main {
         constraints.insets=new Insets(0,50,0,0);
         resultsPanel.getTheObject().add(searchData.getTheObject(), constraints);
 
-        constraints.gridx=3;
-        constraints.gridy=0;
+        /*constraints.gridx=2;
+        constraints.gridy=1;
+        constraints.insets=new Insets(30,50,0,0);
+        constraints.weightx=1;resultsPanel.getTheObject().add(sortButton, constraints);
+        */
+        constraints.gridx=2;
+        constraints.gridy=1;
         constraints.insets=new Insets(0,50,0,0);
-        resultsPanel.getTheObject().add(sortButton, constraints);
-
-        constraints.gridx=3;
-        constraints.gridy=3;
-        constraints.insets=new Insets(0,50,0,0);
+        constraints.weightx=1;
         resultsPanel.getTheObject().add(showButton, constraints);
 
 
@@ -1339,7 +1339,7 @@ public class Main {
                 @Override
                 public void mouseDragged(MouseEvent e) {
 
-                   ResultSet set=connectionHandler.connectAndFetch("SELECT * FROM info");
+                /*   ResultSet set=connectionHandler.connectAndFetch("SELECT * FROM info");
                     try {
                         while (set.next()){
                             int i=0;
@@ -1350,7 +1350,7 @@ public class Main {
                         }
                     }catch (Exception exception){
                         exception.printStackTrace();
-                    }
+                    }*/
                     ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info");
                     try {
                         while (set1.next()){
@@ -1380,6 +1380,10 @@ public class Main {
                     jScrollPane.setPreferredSize(new Dimension(1280,768));
                     RsFrame.setVisible(true);
                     RsFrame.add(jScrollPane);
+
+
+
+                    ConnectionHandler.closeConnection();
 
                 }
 
