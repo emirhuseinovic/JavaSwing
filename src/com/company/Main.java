@@ -177,10 +177,9 @@ public class Main {
         RsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 
-
-
         //<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         ////"Icon made by Freepik from www.flaticon.com"
+
         // Creating layouts
         BorderLayout borderLayout=new BorderLayout();
         GridLayout gridLayout= new GridLayout(0,3,10,10);
@@ -302,7 +301,7 @@ public class Main {
         JLabel calendarIconLabel= new JLabel(calendarIcon);
         calendarIconLabel.setPreferredSize(new Dimension(32,32));
         // <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-        // "Icon made by Freepik perfect from www.flaticon.com"
+        // "Icon made by Freepik from www.flaticon.com"
 
 
         // Components for plusPanelTwo
@@ -603,9 +602,8 @@ public class Main {
         // Components for loginPanel
         MyFrame<JLabel> usernameIcon= new MyFrame<JLabel>(new JLabel(new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/user(1).png")));
         // <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-        // author freepik
+        //"Icon made by Freepik from www.flaticon.com"
         usernameIcon.getTheObject().setPreferredSize(new Dimension(32,32));
-        //usernameIcon.getTheObject().setHorizontalAlignment(JLabel.CENTER);
         usernameIcon.getTheObject().setBackground(Color.DARK_GRAY);
         usernameIcon.getTheObject().setForeground(Color.gray);
 
@@ -618,15 +616,13 @@ public class Main {
 
         MyFrame<JLabel> usernameLabel= new MyFrame<JLabel>(new JLabel("Ime"));
         usernameLabel.getTheObject().setPreferredSize(new Dimension(200,50));
-        //usernameLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
         usernameLabel.getTheObject().setBackground(Color.DARK_GRAY);
         usernameLabel.getTheObject().setForeground(Color.gray);
 
         MyFrame<JLabel> passwordIcon= new MyFrame<JLabel>(new JLabel(new ImageIcon("/home/emir/IdeaProjects/JavaSwingApp/src/com/company/padlock(1).png")));
         //<div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-        //author pixel perfect
+        //"Icon made by Pixel perfect from www.flaticon.com"
         passwordIcon.getTheObject().setPreferredSize(new Dimension(32,32));
-        //passwordIcon.getTheObject().setHorizontalAlignment(JLabel.CENTER);
         passwordIcon.getTheObject().setBackground(Color.DARK_GRAY);
         passwordIcon.getTheObject().setForeground(Color.gray);
 
@@ -965,16 +961,6 @@ public class Main {
         constraints.gridy=3;
         constraints.insets=new Insets(0,50,0,0);
         resultsPanel.getTheObject().add(showButton, constraints);
-
-
-
-
-
-
-        //plusPanelThree.getTheObject().add(badgeIconLabel, constraints);
-
-
-
 
 
         // Add to main JPanel
