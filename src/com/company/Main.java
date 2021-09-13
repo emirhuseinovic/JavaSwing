@@ -659,33 +659,37 @@ public class Main {
 
         // Components for resultsPanel
 
-        String [] listForSorting= {"id", "Ime", "Prezime", "Bodovi"};
+        String [] listForSorting= {"Filter kolona ","id", "Ime", "Prezime", "Bodovi"};
         MyFrame<JComboBox> sortList= new MyFrame<>(new JComboBox(listForSorting));
         sortList.getTheObject().setPreferredSize(new Dimension(200,50));
-        sortList.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0, 0,0, Color.decode("#66d9ff")));
+        sortList.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0, 0,2, Color.decode("#66d9ff")));
 
-        String [] listForSorting1= {"ASC", "DESC"};
+        String [] listForSorting1= {"Filter uzlazno/silazno","ASC", "DESC"};
         MyFrame<JComboBox> sortList1= new MyFrame<>(new JComboBox(listForSorting1));
         sortList1.getTheObject().setPreferredSize(new Dimension(200,50));
         sortList1.getTheObject().setBorder(BorderFactory.createMatteBorder(0,0, 0,2, Color.decode("#66d9ff")));
 
-        MyFrame<JLabel> searchLabel= new MyFrame<JLabel>(new JLabel("Korisničko ime ili šifra nisu ispravni"));
-        searchLabel.getTheObject().setPreferredSize(new Dimension(200,50));
-        searchLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
-        searchLabel.getTheObject().setBackground(Color.DARK_GRAY);
-        searchLabel.getTheObject().setForeground(Color.red);
 
-        MyFrame<JTextField> searchData=new MyFrame<JTextField>(new JTextField());
+        MyFrame<JTextField> searchData=new MyFrame<>(new JTextField());
         searchData.getTheObject().setPreferredSize(new Dimension(400,50));
         searchData.getTheObject().setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.decode("#66d9ff")));
         searchData.getTheObject().setBackground(Color.darkGray);
         searchData.getTheObject().setForeground(Color.lightGray);
         searchData.getTheObject().setHorizontalAlignment(JTextField.CENTER);
 
-        JButton sortButton= new JButton("Pretraga po imenu");
-        sortButton.setForeground(Color.decode("#66d9ff"));
-        sortButton.setPreferredSize(new Dimension(200,50));
-        sortButton.setBackground(Color.darkGray);
+        MyFrame<JTextField> searchData2=new MyFrame<>(new JTextField());
+        searchData2.getTheObject().setPreferredSize(new Dimension(400,50));
+        searchData2.getTheObject().setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.decode("#66d9ff")));
+        searchData2.getTheObject().setBackground(Color.darkGray);
+        searchData2.getTheObject().setForeground(Color.lightGray);
+        searchData2.getTheObject().setHorizontalAlignment(JTextField.CENTER);
+
+        MyFrame<JLabel> searchLabel= new MyFrame<>(new JLabel("Pretraga po imenu"));
+        searchLabel.getTheObject().setPreferredSize(new Dimension(200,50));
+        searchLabel.getTheObject().setHorizontalAlignment(JLabel.CENTER);
+        searchLabel.getTheObject().setBackground(Color.DARK_GRAY);
+        searchLabel.getTheObject().setForeground(Color.lightGray);
+
 
 
         JButton showButton= new JButton("Prikaži tabelu");
@@ -938,28 +942,26 @@ public class Main {
 
         constraints.gridx=0;
         constraints.gridy=0;
-        constraints.insets=new Insets(0,0,5,0);
+       // constraints.insets=new Insets(0,0,0,0);
         resultsPanel.getTheObject().add(sortList.getTheObject(),constraints);
 
         constraints.gridx=1;
         constraints.gridy=0;
-        constraints.insets=new Insets(0,50,0,0);
+        //constraints.insets=new Insets(0,0,0,0);
         resultsPanel.getTheObject().add(sortList1.getTheObject(),constraints);
 
         constraints.gridx=2;
         constraints.gridy=0;
-        constraints.insets=new Insets(0,50,0,0);
-        resultsPanel.getTheObject().add(searchData.getTheObject(), constraints);
+        //constraints.insets=new Insets(0,0,0,0);
+        resultsPanel.getTheObject().add(searchData2.getTheObject(), constraints);
 
-        /*constraints.gridx=2;
-        constraints.gridy=1;
-        constraints.insets=new Insets(30,50,0,0);
-        constraints.weightx=1;resultsPanel.getTheObject().add(sortButton, constraints);
-        */
         constraints.gridx=2;
         constraints.gridy=1;
-        constraints.insets=new Insets(0,50,0,0);
-        constraints.weightx=1;
+        resultsPanel.getTheObject().add(searchLabel.getTheObject(), constraints);
+
+        constraints.gridx=2;
+        constraints.gridy=2;
+        constraints.insets=new Insets(50,50,0,0);
         resultsPanel.getTheObject().add(showButton, constraints);
 
 
@@ -1333,46 +1335,335 @@ public class Main {
             showButton.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
-                    Object [] [] values = new Object[0][];
-                    
-                    Object [] tempArray;
-                    DefaultTableModel tableModel= new DefaultTableModel(values,columns);
-                    ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info");
+                    if(sortList.getTheObject().getSelectedItem().equals("Prezime") && sortList1.getTheObject().getSelectedItem().equals("ASC")){
+                        String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
+                        Object [] [] values = new Object[0][];
 
-                    try {
-                        while (set1.next()){
+                        Object [] tempArray;
+                        DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+                        ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info ORDER BY surname ASC");
 
-                            tempArray=new Object[]{
-                                    set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
-                                    set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
-                                    set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
-                                    set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
-                                    set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
+                        try {
+                            while (set1.next()){
 
-                            tableModel.addRow(tempArray);
+                                tempArray=new Object[]{
+                                        set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                        set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                        set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                        set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
+                                        set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
 
-                            JTable jTable= new JTable(tableModel);
-                            jTable.setPreferredSize(new Dimension(1280,720));
-                            JScrollPane jScrollPane= new JScrollPane(jTable);
-                            jTable.setFillsViewportHeight(true);
-                            jTable.setFillsViewportHeight(true);
-                            jScrollPane.createVerticalScrollBar();
-                            jScrollPane.createHorizontalScrollBar();
-                            jScrollPane.setPreferredSize(new Dimension(1280,768));
-                            RsFrame.setVisible(true);
-                            RsFrame.add(jScrollPane);
+                                tableModel.addRow(tempArray);
+
+                                JTable jTable= new JTable(tableModel);
+                                jTable.setPreferredSize(new Dimension(1280,720));
+                                JScrollPane jScrollPane= new JScrollPane(jTable);
+                                jTable.setFillsViewportHeight(true);
+                                jTable.setFillsViewportHeight(true);
+                                jScrollPane.createVerticalScrollBar();
+                                jScrollPane.createHorizontalScrollBar();
+                                jScrollPane.setPreferredSize(new Dimension(1280,768));
+                                RsFrame.setVisible(true);
+                                RsFrame.add(jScrollPane);
 
 
 
 
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
                         }
-                    }catch (Exception exception){
-                        exception.printStackTrace();
+                        ConnectionHandler.closeConnection();
+
+
+
                     }
-                    ConnectionHandler.closeConnection();
+                    if(sortList.getTheObject().getSelectedItem().equals("Ime") && sortList1.getTheObject().getSelectedItem().equals("ASC")){
+                        String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
+                        Object [] [] values = new Object[0][];
+
+                        Object [] tempArray;
+                        DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+                        ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info ORDER BY name ASC");
+                        try {
+                            while (set1.next()){
+
+                                tempArray=new Object[]{
+                                        set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                        set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                        set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                        set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
+                                        set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
+
+                                tableModel.addRow(tempArray);
+
+                                JTable jTable= new JTable(tableModel);
+                                jTable.setPreferredSize(new Dimension(1280,720));
+                                JScrollPane jScrollPane= new JScrollPane(jTable);
+                                jTable.setFillsViewportHeight(true);
+                                jTable.setFillsViewportHeight(true);
+                                jScrollPane.createVerticalScrollBar();
+                                jScrollPane.createHorizontalScrollBar();
+                                jScrollPane.setPreferredSize(new Dimension(1280,768));
+                                RsFrame.setVisible(true);
+                                RsFrame.add(jScrollPane);
 
 
+
+
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
+                        ConnectionHandler.closeConnection();
+
+
+
+                    }
+                    if(sortList.getTheObject().getSelectedItem().equals("Bodovi") && sortList1.getTheObject().getSelectedItem().equals("ASC")){
+                        String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
+                        Object [] [] values = new Object[0][];
+
+                        Object [] tempArray;
+                        DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+                        ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info ORDER BY sum ASC");
+
+                        try {
+                            while (set1.next()){
+
+                                tempArray=new Object[]{
+                                        set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                        set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                        set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                        set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
+                                        set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
+
+                                tableModel.addRow(tempArray);
+
+                                JTable jTable= new JTable(tableModel);
+                                jTable.setPreferredSize(new Dimension(1280,720));
+                                JScrollPane jScrollPane= new JScrollPane(jTable);
+                                jTable.setFillsViewportHeight(true);
+                                jTable.setFillsViewportHeight(true);
+                                jScrollPane.createVerticalScrollBar();
+                                jScrollPane.createHorizontalScrollBar();
+                                jScrollPane.setPreferredSize(new Dimension(1280,768));
+                                RsFrame.setVisible(true);
+                                RsFrame.add(jScrollPane);
+
+
+
+
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
+                        ConnectionHandler.closeConnection();
+
+
+
+                    }
+
+                    if(sortList.getTheObject().getSelectedItem().equals("Ime") && sortList1.getTheObject().getSelectedItem().equals("DESC")){
+                        String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
+                        Object [] [] values = new Object[0][];
+
+                        Object [] tempArray;
+                        DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+                        ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info ORDER BY name DESC");
+
+                        try {
+                            while (set1.next()){
+
+                                tempArray=new Object[]{
+                                        set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                        set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                        set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                        set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
+                                        set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
+
+                                tableModel.addRow(tempArray);
+
+                                JTable jTable= new JTable(tableModel);
+                                jTable.setPreferredSize(new Dimension(1280,720));
+                                JScrollPane jScrollPane= new JScrollPane(jTable);
+                                jTable.setFillsViewportHeight(true);
+                                jTable.setFillsViewportHeight(true);
+                                jScrollPane.createVerticalScrollBar();
+                                jScrollPane.createHorizontalScrollBar();
+                                jScrollPane.setPreferredSize(new Dimension(1280,768));
+                                RsFrame.setVisible(true);
+                                RsFrame.add(jScrollPane);
+
+
+
+
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
+                        ConnectionHandler.closeConnection();
+
+
+
+                    }
+                    if(sortList.getTheObject().getSelectedItem().equals("Prezime") && sortList1.getTheObject().getSelectedItem().equals("DESC")){
+                        String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
+                        Object [] [] values = new Object[0][];
+
+                        Object [] tempArray;
+                        DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+                        ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info ORDER BY surname DESC");
+
+                        try {
+                            while (set1.next()){
+
+                                tempArray=new Object[]{
+                                        set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                        set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                        set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                        set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
+                                        set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
+
+                                tableModel.addRow(tempArray);
+
+                                JTable jTable= new JTable(tableModel);
+                                jTable.setPreferredSize(new Dimension(1280,720));
+                                JScrollPane jScrollPane= new JScrollPane(jTable);
+                                jTable.setFillsViewportHeight(true);
+                                jTable.setFillsViewportHeight(true);
+                                jScrollPane.createVerticalScrollBar();
+                                jScrollPane.createHorizontalScrollBar();
+                                jScrollPane.setPreferredSize(new Dimension(1280,768));
+                                RsFrame.setVisible(true);
+                                RsFrame.add(jScrollPane);
+
+
+
+
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
+                        ConnectionHandler.closeConnection();
+
+
+
+                    }
+                    if(sortList.getTheObject().getSelectedItem().equals("Bodovi") && sortList1.getTheObject().getSelectedItem().equals("DESC")){
+                        String [] columns={"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura" ,"Broj bodova"};
+                        Object [] [] values = new Object[0][];
+
+                        Object [] tempArray;
+                        DefaultTableModel tableModel= new DefaultTableModel(values,columns);
+                        ResultSet set1=connectionHandler.connectAndFetch("SELECT * FROM info ORDER BY sum DESC");
+
+                        try {
+                            while (set1.next()){
+
+                                tempArray=new Object[]{
+                                        set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                        set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                        set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                        set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"),set1.getDouble("relSubj39"), set1.getString("iC"),
+                                        set1.getString("fC"), set1.getString("cC"),set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
+
+                                tableModel.addRow(tempArray);
+
+                                JTable jTable= new JTable(tableModel);
+                                jTable.setPreferredSize(new Dimension(1280,720));
+                                JScrollPane jScrollPane= new JScrollPane(jTable);
+                                jTable.setFillsViewportHeight(true);
+                                jTable.setFillsViewportHeight(true);
+                                jScrollPane.createVerticalScrollBar();
+                                jScrollPane.createHorizontalScrollBar();
+                                jScrollPane.setPreferredSize(new Dimension(1280,768));
+                                RsFrame.setVisible(true);
+                                RsFrame.add(jScrollPane);
+
+
+
+
+                            }
+                        }catch (Exception exception){
+                            exception.printStackTrace();
+                        }
+                        ConnectionHandler.closeConnection();
+
+
+
+                    }
+
+                    else {
+                        String[] columns = {"id", "ŠG", "Datum", "Ime", "Ime oca", "Prezime", "Datum rođenja", "Opšti uspjeh VII", "Opšti uspjeh VIII", "Opšti uspjeh IX", "Rel. pred. I (VIII)", "Rel. pred. II (VIII)", "Rel. pred. III (VIII)", "Rel. pred. I (IX)", "Rel. pred. II (IX)", "Rel. pred. III (IX)", "Međunarodno takmičenje", "Federalno takmičenje", "Kantonalno takmčenje", "Posebna diploma", "Externa matura", "Broj bodova"};
+                        Object[][] values = new Object[0][];
+
+                        Object[] tempArray;
+                        DefaultTableModel tableModel = new DefaultTableModel(values, columns);
+                        ResultSet set1 = connectionHandler.connectAndFetch("SELECT * FROM info");
+
+                        try {
+                            while (set1.next()) {
+
+                                tempArray = new Object[]{
+                                        set1.getInt("id"), set1.getString("schoolYear"), set1.getString("entryDate"), set1.getString("name"),
+                                        set1.getString("fatherName"), set1.getString("surname"), set1.getString("dob"), set1.getDouble("gs7"),
+                                        set1.getDouble("gs8"), set1.getDouble("gs9"), set1.getDouble("relSubj18"), set1.getDouble("relSubj28"),
+                                        set1.getDouble("relSubj38"), set1.getDouble("relSubj19"), set1.getDouble("relSubj29"), set1.getDouble("relSubj39"), set1.getString("iC"),
+                                        set1.getString("fC"), set1.getString("cC"), set1.getString("sD"), set1.getDouble("ex"), set1.getString("sum")};
+
+                                tableModel.addRow(tempArray);
+
+                                JTable jTable = new JTable(tableModel);
+                                jTable.setPreferredSize(new Dimension(1280, 720));
+                                JScrollPane jScrollPane = new JScrollPane(jTable);
+                                jTable.setFillsViewportHeight(true);
+                                jTable.setFillsViewportHeight(true);
+                                jScrollPane.createVerticalScrollBar();
+                                jScrollPane.createHorizontalScrollBar();
+                                jScrollPane.setPreferredSize(new Dimension(1280, 768));
+                                RsFrame.setVisible(true);
+                                RsFrame.add(jScrollPane);
+
+
+                            }
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+                        ConnectionHandler.closeConnection();
+
+                    }
+
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
+
+            labelIconTwo.getTheObject().addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    resultsJFrame.getTheObject().setVisible(true);
 
 
                 }

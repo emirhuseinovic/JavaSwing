@@ -9,8 +9,10 @@ import java.util.*;
 public class ConnectionHandler {
     private String query;
     private String credentials;
+    private Connection connection;
 
-    public ResultSet connectAndFetch(String query) {
+
+    public ResultSet connectAndFetch(String query)  {
 
 
         try {
@@ -34,6 +36,7 @@ public class ConnectionHandler {
             e.printStackTrace();
 
         }
+
 
 
         return null;
@@ -74,8 +77,9 @@ public class ConnectionHandler {
 */
 
 
-
                 return resultSet;
+
+
 
 
 
@@ -83,6 +87,7 @@ public class ConnectionHandler {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
 
 
             return null;
